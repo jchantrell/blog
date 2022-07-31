@@ -12,7 +12,7 @@ function NavBar() {
   return (
     <div className="navbar">
       <Link href="/">
-        <button className="navbar-start">jchantrell</button>
+        <button className="navbar-start pl-4">jchantrell</button>
       </Link>
       <div className="navbar-end">
         <Link href="/projects">

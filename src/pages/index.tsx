@@ -51,10 +51,11 @@ const Home: NextPage = () => {
           <Link href="/contact">
             <a className="link">github</a>
           </Link>
-          . If you&apos;d like to be contact, my details can be found{" "}
+          . If you&apos;d like to get in contact, my details can be found{" "}
           <Link href="/contact">
-            <a className="link">here.</a>
-          </Link>
+            <a className="link">here</a>
+          </Link>{" "}
+          and I&apos;ll generally be back to you within the day.
         </div>
       </main>
     </>
