@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function NavBar() {
   const navigateToExternalUrl = (
@@ -11,25 +12,29 @@ function NavBar() {
   return (
     <div className="navbar">
       <Link href="/">
-        <button className=" navbar-start">jchantrell</button>
+        <button className="navbar-start">jchantrell</button>
       </Link>
       <div className="navbar-end">
         <Link href="/projects">
-          <button className="btn btn-ghost">Projects</button>
+          <button className="btn btn-ghost hidden sm:inline-flex">
+            Projects
+          </button>
         </Link>
         <button
-          className="btn btn-ghost"
+          className="btn btn-ghost hidden sm:inline-flex"
           onClick={() => navigateToExternalUrl("https://github.com/jchantrell")}
         >
           Github
         </button>
         <Link href="/technology">
-          <button className="btn btn-ghost">Tools</button>
+          <button className="btn btn-ghost hidden sm:inline-flex">Tools</button>
         </Link>
         <Link href="/contact">
-          <button className="btn btn-ghost">Contact</button>
+          <button className="btn btn-ghost hidden sm:inline-flex">
+            Contact
+          </button>
         </Link>
-        <label className="btn btn-circle swap swap-rotate">
+        <label className="sm:hidden btn btn-circle swap swap-rotate align-end">
           <input type="checkbox" />
 
           <svg
