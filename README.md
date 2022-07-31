@@ -1,3 +1,3 @@
-# Create T3 App
+# jchantrell.dev
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+Personal website built with Next, React, TypeScript, tRPC, Prisms, Tailwind + more.
