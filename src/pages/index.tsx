@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Header from "../components/head";
 import NavBar from "../components/nav";
 import Link from "next/link";
-import { trpc } from "../utils/trpc";
+import * as THREE from "three";
 
 const Home: NextPage = () => {
   return (
