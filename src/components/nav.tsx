@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { themeChange } from "theme-change";
 
 function Title() {
@@ -81,38 +81,37 @@ function HamburgerMenu() {
         <HamburgerItem item="projects" />
         <HamburgerItem item="technology" />
         <HamburgerItem item="contact" />
+        <HamburgerThemeChanger />
       </ul>
     </div>
   );
 }
 
-function ThemeChanger() {
+function HamburgerThemeChanger() {
   let currentTheme;
-  // if (typeof window !== "undefined") {
-  //   if (window.matchMedia) {
-  //     console.log("matches");
-  //     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  //       console.log("dark");
-  //     } else {
-  //       console.log("light");
-  //     }
-  //   } else {
-  //     console.log("idk");
-  //   }
-  // }
 
   if (typeof localStorage !== "undefined") {
     currentTheme = localStorage.getItem("theme");
   }
 
-  if (currentTheme == "light") {
+  return <button data-toggle-theme="dark,garden">sdf</button>;
+}
+
+function NavThemeChanger() {
+  let currentTheme;
+
+  if (typeof localStorage !== "undefined") {
+    currentTheme = localStorage.getItem("theme");
+  }
+
+  if (currentTheme == "garden") {
     return (
       <div>
         <label className="swap swap-rotate">
           <input type="checkbox" />
 
           <svg
-            className="swap-on fill-current w-10 h-10"
+            className="hidden sm:inline-flex swap-on fill-current w-7 h-7"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             data-set-theme="dark"
@@ -121,10 +120,10 @@ function ThemeChanger() {
           </svg>
 
           <svg
-            className="swap-off fill-current w-10 h-10"
+            className="hidden sm:inline-flex swap-off fill-current w-7 h-7"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            data-set-theme="light"
+            data-set-theme="garden"
           >
             <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
           </svg>
@@ -138,7 +137,7 @@ function ThemeChanger() {
           <input type="checkbox" defaultChecked />
 
           <svg
-            className="swap-on fill-current w-10 h-10"
+            className="hidden sm:inline-flex swap-on fill-current w-7 h-7"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             data-set-theme="dark"
@@ -147,10 +146,10 @@ function ThemeChanger() {
           </svg>
 
           <svg
-            className="swap-off fill-current w-10 h-10"
+            className="hidden sm:inline-flex swap-off fill-current w-7 h-7"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            data-set-theme="light"
+            data-set-theme="garden"
           >
             <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
           </svg>
@@ -170,19 +169,11 @@ function NavBar() {
         <NavItem item="projects" />
         <NavItem item="technology" />
         <NavItem item="contact" />
+        <NavThemeChanger />
         <HamburgerMenu />
-        <ThemeChanger />
       </div>
     </div>
   );
-}
-
-{
-  /* <Link href="https://github.com/jchantrell">
-  <a target="_blank" rel="noopener noreferrer" className="link">
-    github
-  </a>
-</Link>; */
 }
 
 export default NavBar;
