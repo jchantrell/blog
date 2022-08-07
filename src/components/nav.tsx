@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { themeChange } from "theme-change";
 
 function Title() {
@@ -52,10 +52,18 @@ function HamburgerItem({ item }: NavItemProps) {
 }
 
 function HamburgerMenu() {
+  const handleChange = (event: any) => {
+    if (event.target.checked) {
+      // open hamburger menu
+    } else {
+      // close hamburger menu
+    }
+  };
+
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="sm:hidden swap swap-rotate align-end">
-        <input type="checkbox" />
+        <input onChange={handleChange} type="checkbox" />
 
         <svg
           className="swap-off fill-current"
@@ -91,13 +99,39 @@ function HamburgerMenu() {
 }
 
 function HamburgerThemeChanger() {
-  let currentTheme;
+  const [currentTheme, setCurrentTheme]: any = useState();
 
-  if (typeof localStorage !== "undefined") {
-    currentTheme = localStorage.getItem("theme");
-  }
+  useEffect(() => {
+    if (typeof localStorage !== "undefined") {
+      setCurrentTheme(localStorage.getItem("theme"));
+    }
+  }, []);
 
-  return <button data-toggle-theme="dark,garden">sdf</button>;
+  const handleChange = () => {
+    setCurrentTheme(localStorage.getItem("theme"));
+  };
+
+  return (
+    <label
+      style={{ display: "flex", flexDirection: "column" }}
+      htmlFor="default-toggle"
+      data-toggle-theme="dark,light"
+    >
+      <input
+        type="checkbox"
+        value=""
+        id="default-toggle"
+        className="sr-only peer"
+        data-toggle-theme="dark,light"
+        onChange={handleChange}
+      />
+      {currentTheme == "light" ? (
+        <a className="peer btn btn-ghost sm:inline-flex">Dark Mode 🌙</a>
+      ) : (
+        <a className="peer btn btn-ghost sm:inline-flex">Light Mode ☀️</a>
+      )}
+    </label>
+  );
 }
 
 function NavThemeChanger() {
@@ -107,7 +141,7 @@ function NavThemeChanger() {
     currentTheme = localStorage.getItem("theme");
   }
 
-  if (currentTheme == "garden") {
+  if (currentTheme == "light") {
     return (
       <div>
         <label className="swap swap-rotate">
@@ -126,7 +160,7 @@ function NavThemeChanger() {
             className="hidden sm:inline-flex swap-off fill-current w-7 h-7"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            data-set-theme="garden"
+            data-set-theme="light"
           >
             <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
           </svg>
@@ -152,7 +186,7 @@ function NavThemeChanger() {
             className="hidden sm:inline-flex swap-off fill-current w-7 h-7"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            data-set-theme="garden"
+            data-set-theme="light"
           >
             <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
           </svg>
