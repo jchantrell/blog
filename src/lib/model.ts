@@ -12,6 +12,7 @@ export function loadGLTFModel(
     loader.load(
       glbPath,
       (gltf) => {
+        console.log(gltf);
         const obj = gltf.scene;
         obj.name = "dog";
         obj.position.y = 0;

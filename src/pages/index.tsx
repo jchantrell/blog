@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Header from "../components/head";
 import NavBar from "../components/nav";
 import Bio from "../components/bio";
-import Scene from "../three/scene";
 import Castle from "../three/castle";
 
 const Home: NextPage = () => {

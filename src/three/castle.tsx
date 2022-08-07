@@ -5,14 +5,15 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { loadGLTFModel } from "../lib/model";
 
 const Castle = () => {
-  const refContainer = useRef<HTMLDivElement>();
+  const refContainer =
+    React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const [loading, setLoading] = useState<boolean>(true);
   const [renderer, setRenderer] = useState<any>();
   const [_camera, setCamera] = useState<any>();
   const [target] = useState<any>(new THREE.Vector3(-0.5, 1.2, 0));
   const [initialCameraPosition] = useState(
     new THREE.Vector3(
-      100 * Math.sin(0.2 * Math.PI),
+      150 * Math.sin(0.2 * Math.PI),
       50,
       250 * Math.cos(0.2 * Math.PI)
     )
@@ -76,14 +77,14 @@ const Castle = () => {
       controls.target = target;
       setControls(controls);
 
-      loadGLTFModel(scene, "http://127.0.0.1:8080/scene.gltf", {
+      loadGLTFModel(scene, "http://127.0.0.1:8080/castle/scene.gltf", {
         receiveShadow: false,
         castShadow: false,
       }).then(() => {
         animate();
         setLoading(false);
       });
-      let req = null;
+      let req: any = null;
       let frame = 0;
       const animate = () => {
         req = requestAnimationFrame(animate);
