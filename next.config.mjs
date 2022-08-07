@@ -9,7 +9,6 @@ import { env } from "./src/env/server.mjs";
  * @constraint {{import('next').NextConfig}}
  */
 function defineNextConfig(config) {
-  console.log(config);
   return config;
 }
 
