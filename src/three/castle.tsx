@@ -5,27 +5,27 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { loadGLTFModel } from "../lib/model";
 
 const Castle = () => {
-  const refBody = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const refContainer = useRef<HTMLDivElement>();
+  const [loading, setLoading] = useState<boolean>(true);
   const [renderer, setRenderer] = useState<any>();
   const [_camera, setCamera] = useState<any>();
   const [target] = useState<any>(new THREE.Vector3(-0.5, 1.2, 0));
   const [initialCameraPosition] = useState(
     new THREE.Vector3(
-      20 * Math.sin(0.2 * Math.PI),
-      10,
-      20 * Math.cos(0.2 * Math.PI)
+      100 * Math.sin(0.2 * Math.PI),
+      50,
+      250 * Math.cos(0.2 * Math.PI)
     )
   );
   const [scene] = useState(new THREE.Scene());
   const [_controls, setControls] = useState<any>();
 
   const easeOutCirc = (x: number) => {
-    return Math.sqrt(x - Math.pow(x - 1, 4));
+    return Math.sqrt(1 - Math.pow(x - 1, 4));
   };
 
   const handleWindowResize = useCallback(() => {
-    const { current: container } = refBody;
+    const { current: container } = refContainer;
     if (container && renderer) {
       const scW = container.clientWidth;
       const scH = container.clientHeight;
@@ -34,10 +34,11 @@ const Castle = () => {
     }
   }, [renderer]);
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
-    const { current: container } = refBody;
+    const { current: container } = refContainer;
 
-    if (container) {
+    if (container && !renderer) {
       const scW = container.clientWidth;
       const scH = container.clientHeight;
 
@@ -56,15 +57,18 @@ const Castle = () => {
         -scale,
         scale,
         scale,
-        -scale / 2,
+        -scale,
         0.01,
         50000
       );
+
       camera.position.copy(initialCameraPosition);
       camera.lookAt(target);
+      camera.zoom = 0.3;
+      camera.updateProjectionMatrix();
       setCamera(camera);
 
-      const ambientLight = new THREE.AmbientLight(0x404040);
+      const ambientLight = new THREE.AmbientLight();
       scene.add(ambientLight);
 
       const controls = new OrbitControls(camera, renderer.domElement);
@@ -75,54 +79,51 @@ const Castle = () => {
       loadGLTFModel(scene, "http://127.0.0.1:8080/scene.gltf", {
         receiveShadow: false,
         castShadow: false,
-      })
-        .then(() => {
-          animate();
-          setLoading(false);
-        })
-        .catch((err) => console.log(err));
-
-      let req: any = null;
+      }).then(() => {
+        animate();
+        setLoading(false);
+      });
+      let req = null;
       let frame = 0;
       const animate = () => {
         req = requestAnimationFrame(animate);
-        frame = frame < 100 ? frame + 1 : frame;
 
-        if (frame < 100) {
+        frame = frame <= 100 ? frame + 100 : frame;
+
+        if (frame <= 100) {
           const p = initialCameraPosition;
-          const rotSpeed = easeOutCirc(frame / 120) * Math.PI * 20;
+          const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20;
 
-          camera.position.y = 10;
+          camera.position.y = 50;
           camera.position.x =
             p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed);
           camera.position.z =
-            p.z * Math.cos(rotSpeed) + p.x * Math.sin(rotSpeed);
+            p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed);
           camera.lookAt(target);
         } else {
           controls.update();
         }
+
         renderer.render(scene, camera);
       };
-    }
-    return (req: any) => {
-      cancelAnimationFrame(req);
-      if (renderer) {
+
+      return () => {
+        cancelAnimationFrame(req);
         renderer.dispose();
-      }
-    };
+      };
+    }
   }, []);
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize, false);
-
     return () => {
-      window.removeEventListener("resize", handleWindowResize);
+      window.removeEventListener("resize", handleWindowResize, false);
     };
   }, [renderer, handleWindowResize]);
 
   return (
     <Container>
-      <BodyModel ref={refBody} />
+      <BodyModel ref={refContainer} />
       {loading && <p>Loading...</p>}
     </Container>
   );

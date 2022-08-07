@@ -12,6 +12,7 @@ const Home: NextPage = () => {
       <main className="container mx-auto flex flex-col items-center h-screen p-4">
         <NavBar />
         <Bio />
+        <br />
         <Castle />
       </main>
     </>

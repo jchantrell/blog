@@ -5,7 +5,10 @@ import { themeChange } from "theme-change";
 function Title() {
   return (
     <Link href="/">
-      <div style={{ cursor: "pointer" }} className="navbar-start pl-4">
+      <div
+        style={{ cursor: "pointer" }}
+        className="navbar-start pl-4 font-bold"
+      >
         jchantrell
       </div>
     </Link>
