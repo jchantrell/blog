@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Header from "../components/head";
 import NavBar from "../components/nav";
 import Bio from "../components/bio";
-import Castle from "../three/castle";
+import Statue from "../three/statue";
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <NavBar />
         <Bio />
         <br />
-        <Castle />
+        <Statue />
       </main>
     </>
   );
