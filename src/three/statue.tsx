@@ -4,13 +4,13 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { loadGLTFModel } from "../lib/model";
 
-const Castle = () => {
+const Statue = () => {
   const refContainer =
     React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const [loading, setLoading] = useState<boolean>(true);
   const [renderer, setRenderer] = useState<any>();
   const [_camera, setCamera] = useState<any>();
-  const [target] = useState<any>(new THREE.Vector3(0, 0.2, 0));
+  const [target] = useState<any>(new THREE.Vector3(0, 0.3, 0));
   const [initialCameraPosition] = useState(
     new THREE.Vector3(
       -10 * Math.sin(0.2 * Math.PI),
@@ -24,16 +24,6 @@ const Castle = () => {
   const easeOutCirc = (x: number) => {
     return Math.sqrt(1 - Math.pow(x - 1, 4));
   };
-
-  const handleWindowResize = useCallback(() => {
-    const { current: container } = refContainer;
-    if (container && renderer) {
-      const scW = container.clientWidth;
-      const scH = container.clientHeight;
-
-      // renderer.setSize(scW, scH);
-    }
-  }, [renderer]);
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
@@ -53,19 +43,11 @@ const Castle = () => {
       container.appendChild(renderer.domElement);
       setRenderer(renderer);
 
-      const scale = scH * 0.08 + 4;
-      const camera = new THREE.OrthographicCamera(
-        -scale,
-        scale,
-        scale,
-        -scale,
-        0.01,
-        100
-      );
+      const camera = new THREE.PerspectiveCamera(45, scW / scH, 0.1, 1000);
 
       camera.position.copy(initialCameraPosition);
       camera.lookAt(target);
-      camera.zoom = 100;
+      camera.zoom = 50;
       camera.position.z = 5000;
       camera.updateProjectionMatrix();
       setCamera(camera);
@@ -76,9 +58,17 @@ const Castle = () => {
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.autoRotate = true;
       controls.target = target;
+      controls.enablePan = false;
+      controls.enableZoom = false;
       setControls(controls);
 
-      loadGLTFModel(scene, "http://127.0.0.1:8080/face/scene.gltf", {
+      window.addEventListener("resize", () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+
+      loadGLTFModel(scene, "/assets/statue/scene.gltf", {
         receiveShadow: false,
         castShadow: false,
       }).then(() => {
@@ -88,8 +78,13 @@ const Castle = () => {
       let req: any = null;
       let frame = 0;
       const animate = () => {
-        console.log(target);
+        console.log(
+          "container",
+          container.clientWidth / container.clientHeight
+        );
+        console.log("camera", camera.aspect);
         req = requestAnimationFrame(animate);
+        camera.updateProjectionMatrix();
         frame = frame <= 100 ? frame + 100 : frame;
         if (frame <= 100) {
           const p = initialCameraPosition;
@@ -113,14 +108,7 @@ const Castle = () => {
         renderer.dispose();
       };
     }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize, false);
-    return () => {
-      window.removeEventListener("resize", handleWindowResize, false);
-    };
-  }, [renderer, handleWindowResize]);
+  }, [renderer]);
 
   return (
     <Container>
@@ -130,4 +118,4 @@ const Castle = () => {
   );
 };
 
-export default Castle;
+export default Statue;
