@@ -1,10 +1,16 @@
 import type { NextPage } from "next";
+import { useState, useEffect } from "react";
 import Header from "../components/head";
 import NavBar from "../components/nav";
 import Bio from "../components/bio";
 import Statue from "../three/statue";
 
 const Home: NextPage = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const handleLoading: any = () => {
+    setLoading(false);
+  };
+
   return (
     <>
       <Header />
@@ -12,7 +18,7 @@ const Home: NextPage = () => {
         <NavBar />
         <Bio />
         <br />
-        <Statue />
+        <Statue handleLoading={handleLoading} />
       </main>
     </>
   );

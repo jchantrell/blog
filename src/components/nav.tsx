@@ -54,9 +54,9 @@ function HamburgerItem({ item }: NavItemProps) {
 function HamburgerMenu() {
   const handleChange = (event: any) => {
     if (event.target.checked) {
-      // open hamburger menu
+      console.log("checked");
     } else {
-      // close hamburger menu
+      console.log("not checked");
     }
   };
 

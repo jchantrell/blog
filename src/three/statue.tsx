@@ -2,15 +2,15 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Container, BodyModel } from "./styles";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { loadGLTFModel } from "../lib/model";
+import { loadModel } from "../lib/loader";
 
-const Statue = () => {
+const Statue = ({ handleLoading }: any) => {
   const refContainer =
     React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const [loading, setLoading] = useState<boolean>(true);
   const [renderer, setRenderer] = useState<any>();
   const [_camera, setCamera] = useState<any>();
-  const [target] = useState<any>(new THREE.Vector3(0, 0.3, 0));
+  const [target] = useState<any>(new THREE.Vector3(0, 0.4, 0));
   const [initialCameraPosition] = useState(
     new THREE.Vector3(
       -10 * Math.sin(0.2 * Math.PI),
@@ -47,7 +47,7 @@ const Statue = () => {
 
       camera.position.copy(initialCameraPosition);
       camera.lookAt(target);
-      camera.zoom = 50;
+      camera.zoom = 70;
       camera.position.z = 5000;
       camera.updateProjectionMatrix();
       setCamera(camera);
@@ -68,21 +68,17 @@ const Statue = () => {
         renderer.setSize(container.clientWidth, container.clientHeight);
       });
 
-      loadGLTFModel(scene, "/assets/statue/scene.gltf", {
+      loadModel(scene, "/assets/statue/scene.gltf", {
         receiveShadow: false,
         castShadow: false,
       }).then(() => {
         animate();
         setLoading(false);
+        handleLoading();
       });
       let req: any = null;
       let frame = 0;
       const animate = () => {
-        console.log(
-          "container",
-          container.clientWidth / container.clientHeight
-        );
-        console.log("camera", camera.aspect);
         req = requestAnimationFrame(animate);
         camera.updateProjectionMatrix();
         frame = frame <= 100 ? frame + 100 : frame;
@@ -112,8 +108,8 @@ const Statue = () => {
 
   return (
     <Container>
-      <BodyModel ref={refContainer} />
       {loading && <p>Loading...</p>}
+      <BodyModel ref={refContainer} />
     </Container>
   );
 };

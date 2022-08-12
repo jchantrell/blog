@@ -22,7 +22,7 @@ function Bio() {
         language I started learning programming with and use in my current
         position of work.
       </div>
-      <br />
+      {/* <br />
       <div>
         Although I am currently working as a developer, I have a broad
         background in IT and have good fundamentals in networking and servers
@@ -30,7 +30,7 @@ function Bio() {
         originally being motivated by wanting to modify games and host servers
         for friends which created the foundation that I continue to build on to
         this day.
-      </div>
+      </div> */}
       <br />
       <div>
         Thank you for reading and having an interest in my work and background.
