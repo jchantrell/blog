@@ -12,16 +12,8 @@ export function loadModel(
     loader.load(
       glbPath,
       (gltf) => {
-        loadingManager.onStart = () => {
-          console.log("started");
-        };
-
-        loadingManager.onProgress = () => {
-          console.log("progress made");
-        };
-
         loadingManager.onLoad = () => {
-          console.log("loading complete");
+          //
         };
         const obj = gltf.scene;
         obj.name = "statue";

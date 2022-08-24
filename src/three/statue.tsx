@@ -108,7 +108,6 @@ const Statue = ({ handleLoading }: any) => {
 
   return (
     <Container>
-      {loading && <p>Loading...</p>}
       <BodyModel ref={refContainer} />
     </Container>
   );
