@@ -2,139 +2,7 @@ import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import { themeChange } from "theme-change";
 
-function Title() {
-  return (
-    <Link href="/">
-      <div
-        style={{ cursor: "pointer" }}
-        className="navbar-start pl-4 font-bold"
-      >
-        jchantrell
-      </div>
-    </Link>
-  );
-}
-
-interface NavItemProps {
-  item?: string;
-  url?: string;
-}
-
-function NavItem({ item }: NavItemProps) {
-  return (
-    <Link
-      href={{
-        pathname: item,
-      }}
-    >
-      <a
-        style={{ cursor: "pointer" }}
-        className="btn btn-ghost hidden sm:inline-flex"
-      >
-        {item}
-      </a>
-    </Link>
-  );
-}
-
-function HamburgerItem({ item }: NavItemProps) {
-  return (
-    <li>
-      <Link
-        href={{
-          pathname: item,
-        }}
-      >
-        <a className="btn btn-ghost sm:inline-flex">{item}</a>
-      </Link>
-    </li>
-  );
-}
-
-function HamburgerMenu() {
-  const handleChange = (event: any) => {
-    if (event.target.checked) {
-      console.log("checked");
-    } else {
-      console.log("not checked");
-    }
-  };
-
-  return (
-    <div className="dropdown dropdown-end">
-      <label tabIndex={0} className="sm:hidden swap swap-rotate align-end">
-        <input onChange={handleChange} type="checkbox" />
-
-        <svg
-          className="swap-off fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 512 512"
-        >
-          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
-        </svg>
-
-        <svg
-          className="swap-on fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 512 512"
-        >
-          <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
-        </svg>
-      </label>
-      <ul
-        tabIndex={0}
-        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <HamburgerItem item="projects" />
-        <HamburgerItem item="technology" />
-        <HamburgerItem item="contact" />
-        <HamburgerThemeChanger />
-      </ul>
-    </div>
-  );
-}
-
-function HamburgerThemeChanger() {
-  const [currentTheme, setCurrentTheme]: any = useState();
-
-  useEffect(() => {
-    if (typeof localStorage !== "undefined") {
-      setCurrentTheme(localStorage.getItem("theme"));
-    }
-  }, []);
-
-  const handleChange = () => {
-    setCurrentTheme(localStorage.getItem("theme"));
-  };
-
-  return (
-    <label
-      style={{ display: "flex", flexDirection: "column" }}
-      htmlFor="default-toggle"
-      data-toggle-theme="dark,light"
-    >
-      <input
-        type="checkbox"
-        value=""
-        id="default-toggle"
-        className="sr-only peer"
-        data-toggle-theme="dark,light"
-        onChange={handleChange}
-      />
-      {currentTheme == "light" ? (
-        <a className="peer btn btn-ghost sm:inline-flex">Dark Mode 🌙</a>
-      ) : (
-        <a className="peer btn btn-ghost sm:inline-flex">Light Mode ☀️</a>
-      )}
-    </label>
-  );
-}
-
-function NavThemeChanger() {
+export function ThemeChanger() {
   let currentTheme;
 
   if (typeof localStorage !== "undefined") {
@@ -195,22 +63,38 @@ function NavThemeChanger() {
     );
 }
 
-function NavBar() {
+export function MobileThemeChanger() {
+  const [currentTheme, setCurrentTheme]: any = useState();
+
   useEffect(() => {
-    themeChange(false);
+    if (typeof localStorage !== "undefined") {
+      setCurrentTheme(localStorage.getItem("theme"));
+    }
   }, []);
+
+  const handleChange = () => {
+    setCurrentTheme(localStorage.getItem("theme"));
+  };
+
   return (
-    <div className="navbar">
-      <Title />
-      <div className="navbar-end">
-        <NavItem item="projects" />
-        <NavItem item="technology" />
-        <NavItem item="contact" />
-        <NavThemeChanger />
-        <HamburgerMenu />
-      </div>
-    </div>
+    <label
+      style={{ display: "flex", flexDirection: "column" }}
+      htmlFor="default-toggle"
+      data-toggle-theme="dark,light"
+    >
+      <input
+        type="checkbox"
+        value=""
+        id="default-toggle"
+        className="sr-only peer"
+        data-toggle-theme="dark,light"
+        onChange={handleChange}
+      />
+      {currentTheme == "light" ? (
+        <a className="peer btn btn-ghost sm:inline-flex">Dark Mode 🌙</a>
+      ) : (
+        <a className="peer btn btn-ghost sm:inline-flex">Light Mode ☀️</a>
+      )}
+    </label>
   );
 }
-
-export default NavBar;

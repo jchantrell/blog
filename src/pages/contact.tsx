@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import Header from "../components/head";
-import NavBar from "../components/nav";
+import Header from "../components/Head";
+import NavBar from "../components/NavBar";
 import { trpc } from "../utils/trpc";
 
 const Contact: NextPage = () => {

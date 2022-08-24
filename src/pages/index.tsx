@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
-import Header from "../components/head";
-import NavBar from "../components/nav";
-import Bio from "../components/bio";
+import Header from "../components/Head";
+import NavBar from "../components/NavBar";
+import Bio from "../components/Bio";
 import Statue from "../three/statue";
 
 const Home: NextPage = () => {
