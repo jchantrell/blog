@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { themeChange } from "theme-change";
 import { ThemeChanger, MobileThemeChanger } from "./ThemeChanger";
 
@@ -46,25 +46,40 @@ function MobileItem({ item }: NavItemProps) {
           pathname: item,
         }}
       >
-        <a className="btn btn-ghost sm:inline-flex">{item}</a>
+        <a className="btn btn-ghost sm:inline-flex" id="dropdownMenuItem">
+          {item}
+        </a>
       </Link>
     </li>
   );
 }
 
 function MobileMenu() {
-  const handleChange = (event: any) => {
-    if (event.target.checked) {
-      console.log("checked");
-    } else {
-      console.log("not checked");
-    }
+  const dropdown = useRef<any>();
+
+  //wip
+  const handleClick = () => {
+    dropdown.current.classList.toggle("dropdown-open");
+    document.activeElement.blur();
   };
 
+  if (typeof window !== "undefined") {
+    document.addEventListener("click", (event) => {
+      console.log(event.target.id);
+      if (
+        event.target.id !== "dropdownMenu" ||
+        event.target.id !== "dropdownMenuItem"
+      ) {
+        dropdown.current.classList.toggle("dropdown-open");
+        document.activeElement.blur();
+      }
+    });
+  }
+
   return (
-    <div className="dropdown dropdown-end">
+    <div className="dropdown dropdown-end" ref={dropdown}>
       <label tabIndex={0} className="sm:hidden swap swap-rotate align-end">
-        <input onChange={handleChange} type="checkbox" />
+        <input type="checkbox" onClick={handleClick} />
 
         <svg
           className="swap-off fill-current"
@@ -89,6 +104,7 @@ function MobileMenu() {
       <ul
         tabIndex={0}
         className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+        id="dropdownMenu"
       >
         <MobileItem item="projects" />
         <MobileItem item="technology" />
