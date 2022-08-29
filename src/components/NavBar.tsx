@@ -6,10 +6,7 @@ import { ThemeChanger, MobileThemeChanger } from "./ThemeChanger";
 function Title() {
   return (
     <Link href="/">
-      <div
-        style={{ cursor: "pointer" }}
-        className="navbar-start pl-4 font-bold"
-      >
+      <div className="navbar-start cursor-pointer font-bold ml-6">
         jchantrell
       </div>
     </Link>
@@ -57,29 +54,10 @@ function MobileItem({ item }: NavItemProps) {
 function MobileMenu() {
   const dropdown = useRef<any>();
 
-  //wip
-  const handleClick = () => {
-    dropdown.current.classList.toggle("dropdown-open");
-    document.activeElement.blur();
-  };
-
-  if (typeof window !== "undefined") {
-    document.addEventListener("click", (event) => {
-      console.log(event.target.id);
-      if (
-        event.target.id !== "dropdownMenu" ||
-        event.target.id !== "dropdownMenuItem"
-      ) {
-        dropdown.current.classList.toggle("dropdown-open");
-        document.activeElement.blur();
-      }
-    });
-  }
-
   return (
     <div className="dropdown dropdown-end" ref={dropdown}>
       <label tabIndex={0} className="sm:hidden swap swap-rotate align-end">
-        <input type="checkbox" onClick={handleClick} />
+        <input type="checkbox" />
 
         <svg
           className="swap-off fill-current"
@@ -122,7 +100,7 @@ function NavBar() {
   return (
     <div className="navbar">
       <Title />
-      <div className="navbar-end">
+      <div className="navbar-end mr-4">
         <NavItem item="projects" />
         <NavItem item="technology" />
         <NavItem item="contact" />

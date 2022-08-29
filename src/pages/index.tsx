@@ -58,8 +58,8 @@ const Home: NextPage = () => {
       )}
       <>
         <Header />
+        <NavBar />
         <main className="container mx-auto flex flex-col items-center h-screen p-4 z-1">
-          <NavBar />
           <Bio />
           <br />
           <Statue handleLoading={handleLoading} />

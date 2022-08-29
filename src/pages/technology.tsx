@@ -7,8 +7,8 @@ const Technology: NextPage = () => {
   return (
     <>
       <Header />
+      <NavBar />
       <main className="container mx-auto flex flex-col items-center h-screen p-4">
-        <NavBar />
         <div>some tech info</div>
       </main>
     </>
