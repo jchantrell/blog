@@ -85,7 +85,7 @@ function MobileMenu() {
         id="dropdownMenu"
       >
         <MobileItem item="projects" />
-        <MobileItem item="technology" />
+        <MobileItem item="blog" />
         <MobileItem item="contact" />
         <MobileThemeChanger />
       </ul>
@@ -102,7 +102,7 @@ function NavBar() {
       <Title />
       <div className="navbar-end mr-4">
         <NavItem item="projects" />
-        <NavItem item="technology" />
+        <NavItem item="blog" />
         <NavItem item="contact" />
         <ThemeChanger />
         <MobileMenu />

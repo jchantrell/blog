@@ -23,13 +23,28 @@ const tagColours: TagColours = {
 interface CardProps {
   title: string;
   description: string;
+  github?: string;
   tags: string[];
 }
 
-function Card({ title, description, tags }: CardProps) {
+function Card({ title, description, github, tags }: CardProps) {
   return (
     <div className="flex flex-col bg-base-300 drop-shadow rounded-md h-100 min-h-20 border-0 cursor-pointer">
+      <img src="https://placeimg.com/400/225/arch" alt="car!"></img>
       <div className="px-3 py-2">{description}</div>
+      {github ? (
+        <a
+          href={github}
+          target="_blank"
+          rel="noreferrer"
+          className="px-3 py-2 link"
+        >
+          {github}
+        </a>
+      ) : (
+        <></>
+      )}
+
       <div className="tags m-2">
         {tags ? (
           tags.map((tag, idx) => (
@@ -50,6 +65,21 @@ function Card({ title, description, tags }: CardProps) {
   );
 }
 
+interface SideabrItemProps {
+  item: string;
+}
+
+function SidebarItem({ item }: SideabrItemProps) {
+  return (
+    <div>
+      <label htmlFor={item}>
+        {item.charAt(0).toUpperCase() + item.slice(1)}
+      </label>
+      <input id={item} type="checkbox" className="hidden" />
+    </div>
+  );
+}
+
 const Projects: NextPage = () => {
   return (
     <>
@@ -60,6 +90,7 @@ const Projects: NextPage = () => {
           <Card
             title="A Project"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            github="https://github.com/jchantrell/blog"
             tags={["typescript", "react", "next", "css"]}
           />
           <Card
@@ -78,14 +109,16 @@ const Projects: NextPage = () => {
             tags={["typescript", "react", "css"]}
           />
         </div>
-        <aside className="hidden sm:block sm:col-start-4 sm:col-end-5">
-          <div>All</div>
-          <div>React</div>
-          <div>Next.js</div>
-          <div>Typescript/Javascript</div>
-          <div>CSS</div>
-          <div>Python</div>
-          <div>Three.js</div>
+        <aside className="hidden sm:block sm:col-start-4 sm:col-end-5 sm:text-center">
+          <SidebarItem item="all" />
+          <SidebarItem item="react" />
+          <SidebarItem item="next.js" />
+          <SidebarItem item="typescript" />
+          <SidebarItem item="CSS" />
+          <SidebarItem item="tailwind" />
+          <SidebarItem item="three.js" />
+          <SidebarItem item="SQL" />
+          <SidebarItem item="other" />
         </aside>
       </main>
     </>
