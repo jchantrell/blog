@@ -1,9 +1,12 @@
 import type { NextPage } from "next";
 import Header from "../components/Head";
 import NavBar from "../components/NavBar";
+import { useEffect } from "react";
 import { trpc } from "../utils/trpc";
 
 const Blog: NextPage = () => {
+  
+
   return (
     <>
       <Header />

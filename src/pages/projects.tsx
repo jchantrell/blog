@@ -1,8 +1,11 @@
 import type { NextPage } from "next";
 import Header from "../components/Head";
 import NavBar from "../components/NavBar";
+import { useEffect, useState } from "react";
+import LoadScreen from "../components/LoadScreen";
+import Image from "next/image";
 
-interface TagColours {
+interface colours {
   react: string;
   next: string;
   typescript: string;
@@ -11,7 +14,7 @@ interface TagColours {
   other: string;
 }
 
-const tagColours: TagColours = {
+const colours: colours = {
   react: "bg-cyan-300",
   next: "bg-violet-500",
   typescript: "bg-yellow-300",
@@ -29,8 +32,14 @@ interface CardProps {
 
 function Card({ title, description, github, tags }: CardProps) {
   return (
-    <div className="flex flex-col bg-base-300 drop-shadow rounded-md h-100 min-h-20 border-0 cursor-pointer">
-      <img src="https://placeimg.com/400/225/arch" alt="car!"></img>
+    <div className="flex flex-col bg-base-300 drop-shadow rounded-md h-100 min-h-20 border-0 cursor-pointer relative">
+      <Image
+        src="https://placeimg.com/400/225/arch"
+        alt=""
+        width="400"
+        height="225"
+        layout="responsive"
+      />
       <div className="px-3 py-2">{description}</div>
       {github ? (
         <a
@@ -51,7 +60,7 @@ function Card({ title, description, github, tags }: CardProps) {
             <div
               key={idx}
               className={`${
-                tagColours[tag as keyof typeof tagColours]
+                colours[tag as keyof typeof colours]
               } badge text-neutral-focus ml-1 border-0`}
             >
               {tag}
@@ -81,8 +90,18 @@ function SidebarItem({ item }: SideabrItemProps) {
 }
 
 const Projects: NextPage = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      console.log("loaded");
+      setLoading(false);
+    });
+  }, []);
+
   return (
     <>
+      {loading ? <></> : <></>}
       <Header />
       <NavBar />
       <main className="mx-auto grid grid-cols-4 gap-4 h-screen p-4">
