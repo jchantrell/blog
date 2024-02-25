@@ -1,0 +1,8 @@
+---
+import Nav from './Nav.astro'
+const { current = '' } = Astro.props;
+---
+
+<header class="flex max-w-screen-2xl p-8 w-full m-0 m-auto">
+  <Nav current={current} />
+</header>
