@@ -1,6 +1,7 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro"
 
 export interface Props {
   title: string;
@@ -10,39 +11,21 @@ export interface Props {
 }
 const { title, description, permalink, current } = Astro.props;
 ---
+
 <html lang="en">
-<head>
-  <BaseHead title={title} description={description} permalink={permalink} />
-</head>
-<body>
-  <div class="layout">
-    <Header current={current} />
+  <head>
+    <BaseHead title={title} description={description} permalink={permalink} />
+  </head>
+  <body>
+    <div class="flex flex-col min-h-full min-h-screen">
+      <Header current={current} />
 
-    <main>
-      <slot />
-    </main>
-
-  </div>
-</body>
+      <main
+        class="flex flex-1 flex-col relative w-full mx-auto max-w-screen-2xl box-border py-4 px-8"
+      >
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
 </html>
-
-<style>
-  .layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    min-height: 100vh;
-  }
-
-  main {
-    flex: 1;
-    position: relative;
-    margin: 0 auto;
-    max-width: 1400px;
-    padding: 1em 2em;
-    box-sizing: border-box;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-</style>

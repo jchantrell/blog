@@ -17,37 +17,24 @@ const permalink = `${Astro.site.href}blog/${slug}`;
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current="blog">
-  <header>
+  <header class="text-center mb-2 uppercase font-sans font-bold min-w-24">
     <p>{publishDate} ~ {readingTime}</p>
-    <h1>{title}</h1>
-    <hr />
+    <h1 class="mb-2">{title}</h1>
+    <hr class="min-w-24"/>
   </header>
   <div class="container">
     <article class="content">
       <Content />
     </article>
-    <hr />
+    <hr class="min-w-24" />
   </div>
 </BaseLayout>
 
 <style>
-  header {
-    text-align: center;
-  }
-
-  header h1 {
-    margin-bottom: 0.7em;
-  }
 
   header p {
     color: var(--text-secondary);
-    text-transform: uppercase;
     font-family: var(--font-family-sans);
-    font-weight: 600;
   }
 
-  header hr {
-    min-width: 100px;
-    width: 30%;
-  }
 </style>
