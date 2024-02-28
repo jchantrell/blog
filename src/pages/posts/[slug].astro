@@ -13,12 +13,12 @@ export async function getStaticPaths() {
 const { Content, frontmatter } = Astro.props.post;
 const { title, description, publishDate } = frontmatter;
 const { slug, readingTime } = getPostData(Astro.props.post);
-const permalink = `${Astro.site.href}blog/${slug}`;
+const permalink = `${Astro.site.href}posts/${slug}`;
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="blog">
-  <header class="text-center mb-2 uppercase font-sans font-bold min-w-24">
-    <p>{publishDate} ~ {readingTime}</p>
+<BaseLayout title={title} description={description} permalink={permalink} current="posts">
+  <header class="text-center mb-2 uppercase font-sans font-bold min-w-24 text-[color:var(--text-secondary)]">
+    <p class="text-[color:var(--text-secondary)]">{publishDate} ~ {readingTime}</p>
     <h1 class="mb-2">{title}</h1>
     <hr class="min-w-24"/>
   </header>
@@ -29,12 +29,3 @@ const permalink = `${Astro.site.href}blog/${slug}`;
     <hr class="min-w-24" />
   </div>
 </BaseLayout>
-
-<style>
-
-  header p {
-    color: var(--text-secondary);
-    font-family: var(--font-family-sans);
-  }
-
-</style>

@@ -6,17 +6,7 @@ const { current = "" } = Astro.props;
 <nav class="w-full grid grid-cols-2 uppercase font-bold font-sans">
   <div class="justify-self-start flex items-center">
     <NavLink path="home" current={current} />
-    <NavLink path="blog" current={current} />
-  </div>
-
-  <div class="justify-self-end">
-    <a href="https://github.com/jchantrell" target="_blank">
-      <img
-        height="30px"
-        width="30px"
-        src="/assets/github-icon.svg"
-        alt="Github icon"
-      />
-    </a>
+    <NavLink path="posts" current={current} />
+    <NavLink path="search" current={current} />
   </div>
 </nav>
