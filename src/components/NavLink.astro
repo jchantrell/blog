@@ -3,11 +3,13 @@ const { current = "", path } = Astro.props;
 ---
 
 <a
-  href={path === "home" ? "/" : path}
+  href={path === "home" ? "/" : `/${path}`}
   class="pl-5 group text-white transition duration-300 min-w-16 text-center items-center no-underline"
 >
   {path}
   <span
-    class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[color:var(--primary-color)]"
+    class={current === path
+      ? "block max-w-0 max-w-full h-0.5 bg-[color:var(--primary-color)]"
+      : "block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[color:var(--primary-color)]"}
   ></span>
 </a>
