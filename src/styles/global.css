@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background-body: #202122;
-  --text-main: #fff;
-  --text-secondary: #ccc;
-  --primary-color: #ccc;
+  --background: #292524; /* text-stone-800 */
+  --text-primary: #fafaf9; /* text-stone-50 */
+  --text-secondary: #d6d3d1; /* text-stone-300 */
+  --primary-color: #047857; /* text-stone-300 */
+  --secondary-color: #57534e; /* text-stone-600 */
   --font-family-serif: Merriweather, serif;
   --font-family-sans: 'Fira Sans', sans-serif;
 }
@@ -31,8 +32,8 @@ body {
   font-family: var(--font-family-serif);
   font-size: 16px;
   line-height: 1.6;
-  background-color: var(--background-body);
-  color: var(--text-main);
+  background-color: var(--background);
+  color: var(--text-primary);
 }
 
 h1,
@@ -91,7 +92,7 @@ ul {
 
 li {
   margin: 1rem 0;
- 	list-style-type: disc;
+  list-style-type: disc;
 }
 
 li p {
