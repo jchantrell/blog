@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { search } from "../../utils/search";
+import Search from "../../components/Search.tsx";
 
 const title = "jchantrell.dev";
 const description = "Search articles.";
 const permalink = `${Astro.site.href}search`;
+const query = Astro.url.searchParams.get("q")! || "";
 
 let posts = await Astro.glob("../../data/posts/*.md");
 
@@ -23,22 +24,6 @@ const sorted = unique.sort((a, b) => (a !== b ? (a < b ? -1 : 1) : 0));
   current="search"
 >
   <div class="container">
-    <input
-      type="text"
-      id="search"
-      class="py-1.5 px-4 bg-[color:var(--background)] outline-none ring-1 ring-[color:var(--secondary-color)] focus:ring-[color:var(--text-secondary)] outline-1 rounded-md h-10 w-full placeholder:text-stone-500"
-      placeholder={`${posts[Math.floor(Math.random() * posts.length)].frontmatter.title}...`}
-    />
-    <div class="mt-4 flex flex-wrap gap-3">
-      {
-        sorted.map((entry) => {
-          return (
-            <div class="bg-[color:var(--secondary-color)] py-1 px-2 rounded-md cursor-pointer text-lg">
-              {entry.replace(/-/g, " ")}
-            </div>
-          );
-        })
-      }
-    </div>
+    <Search posts={posts} query={query} } client:load />
   </div>
 </BaseLayout>
