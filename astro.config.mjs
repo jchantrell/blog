@@ -4,13 +4,15 @@ import mdx from '@astrojs/mdx';
 import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
 import rehypeExternalLinks from 'rehype-external-links';
-
 import tailwind from "@astrojs/tailwind";
+import solidJs from "@astrojs/solid-js";
+
+import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://astro-blog-template.netlify.app',
-  integrations: [mdx(), svelte(), tailwind()],
+  integrations: [mdx(), svelte(), tailwind(), solidJs()],
   markdown: {
     shikiConfig: {
       theme: 'nord'
@@ -19,5 +21,9 @@ export default defineConfig({
     rehypePlugins: [[rehypeExternalLinks, {
       target: '_blank'
     }]]
-  }
+  },
+  output: "server",
+  adapter: node({
+    mode: "standalone"
+  })
 });
