@@ -1,11 +1,13 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import getPostData from "../../utils/getPostData";
+export const prerender = true;
 
-export async function getStaticPaths() {
-  const posts = await Astro.glob("../../data/posts/*.md");
-  return posts.map((p) => ({
-    params: { slug: p.file.split("/").pop().split(".").shift() },
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import getPostData from '../../utils/getPostData';
+
+export async function getStaticPaths(): Promise<any[]> {
+  const posts: any[] = await Astro.glob('../../data/posts/*.md');
+  return posts.map((p: any) => ({
+    params: { slug: p.file.split('/').pop().split('.').shift() },
     props: { post: p },
   }));
 }
@@ -13,35 +15,24 @@ export async function getStaticPaths() {
 const { Content, frontmatter } = Astro.props.post;
 const { title, description, publishDate } = frontmatter;
 const { slug, readingTime } = getPostData(Astro.props.post);
-const permalink = `${Astro.site.href}posts/${slug}`;
+const permalink = `${Astro.site?.href}posts/${slug}`;
 const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/posts/${slug}.md`;
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  permalink={permalink}
-  current="posts"
->
-  <header
-    class="text-center mb-2 uppercase font-sans font-bold min-w-24 text-[color:var(--text-secondary)]"
-  >
-    <p class="text-[color:var(--text-secondary)]">
+<BaseLayout title={title} description={description} permalink={permalink} current='posts'>
+  <header class='text-center mb-2 uppercase font-sans font-bold min-w-24 text-[color:var(--text-secondary)]'>
+    <p class='text-[color:var(--text-secondary)]'>
       {publishDate} ~ {readingTime}
     </p>
-    <h1 class="mb-2">{title}</h1>
-    <hr class="min-w-24" />
+    <h1 class='mb-2'>{title}</h1>
+    <hr class='min-w-24' />
   </header>
-  <div class="container">
-  <blockquote class="text-sm">
-  This article may change over time due to feedback, corrections and the likes. If something you were
-  relying on is missing, the full version history is available <a
-  href={githubLink}
-  target="_blank"
-  class="underline">here</a
-  >.
-  </blockquote>
-    <article class="content">
+  <div class='container'>
+    <blockquote class='text-sm'>
+      This article may change over time due to feedback, corrections and the likes. If something you were relying on is
+      missing, the full version history is available <a href={githubLink} target='_blank' class='underline'>here</a>.
+    </blockquote>
+    <article class='content'>
       <Content />
     </article>
   </div>

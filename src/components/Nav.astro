@@ -1,16 +1,16 @@
 ---
-import Theme from './Theme.svelte'
-import NavLink from "./NavLink.astro";
-const { current = "" } = Astro.props;
+import Theme from './Theme.svelte';
+import NavLink from './NavLink.astro';
+const { current = '' } = Astro.props;
 ---
 
-<nav class="w-full grid grid-cols-2 uppercase font-bold font-sans">
-  <div class="justify-self-start flex items-center">
-    <NavLink path="home" current={current} />
-    <NavLink path="posts" current={current} />
-    <NavLink path="search" current={current} />
+<nav class='w-full grid grid-cols-2 uppercase font-bold font-sans'>
+  <div class='justify-self-start flex items-center'>
+    <NavLink path='home' current={current} />
+    <NavLink path='posts' current={current} />
+    <NavLink path='search' current={current} />
   </div>
-   <div class="theme-toggle-container">
+  <div class='theme-toggle-container'>
     <Theme client:load />
   </div>
 </nav>

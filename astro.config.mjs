@@ -6,10 +6,8 @@ import remarkSmartypants from 'remark-smartypants';
 import rehypeExternalLinks from 'rehype-external-links';
 import tailwind from "@astrojs/tailwind";
 import solidJs from "@astrojs/solid-js";
-
 import node from "@astrojs/node";
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://astro-blog-template.netlify.app',
   integrations: [mdx(), svelte(), tailwind(), solidJs()],
