@@ -4,13 +4,13 @@ import NavLink from './NavLink.astro';
 const { current = '' } = Astro.props;
 ---
 
-<nav class='w-full grid grid-cols-2 uppercase font-bold font-sans'>
-  <div class='justify-self-start flex items-center'>
+<nav class='w-full flex justify-between uppercase font-bold font-sans'>
+  <div class='flex items-baseline self-start'>
     <NavLink path='home' current={current} />
     <NavLink path='posts' current={current} />
     <NavLink path='search' current={current} />
   </div>
-  <div class='justify-self-end'>
+  <div>
     <Theme client:load />
   </div>
 </nav>

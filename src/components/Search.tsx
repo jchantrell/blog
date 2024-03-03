@@ -8,6 +8,7 @@ type Post = {
   description: string;
   tags: string[];
   publishDate: string;
+  readingTime: string;
   path: string;
 };
 
@@ -84,9 +85,10 @@ export function Search(props: { posts: MarkdownInstance<Record<string, any>>[]; 
     const options = {
       keys: ['title', 'description', 'tags'],
       useExtendedSearch: true,
-      includeMatches: true,
+      ignoreFieldNorm: true,
       minMatchCharLength: 1,
-      threshold: 0.5,
+      distance: 160,
+      threshold: 0.6,
     };
 
     fuse = new Fuse(posts, options);
@@ -100,6 +102,7 @@ export function Search(props: { posts: MarkdownInstance<Record<string, any>>[]; 
         description: post.frontmatter.description,
         tags: post.frontmatter.tags.split(',').map((tag: string) => tag.trim()),
         publishDate: post.frontmatter.publishDate,
+        readingTime: post.readingTime,
         path: post.file,
       });
     }
@@ -148,10 +151,15 @@ export function Search(props: { posts: MarkdownInstance<Record<string, any>>[]; 
         </For>
       </div>
 
-      <div class='mt-4'>
+      <div class='mt-6'>
         <For each={store.posts}>
-          {({ item }) => {
-            return <Post post={item} />;
+          {({ item }, i) => {
+            return (
+              <>
+                {i() !== 0 && <hr class='mx-auto' />}
+                <Post post={item} />
+              </>
+            );
           }}
         </For>
       </div>
@@ -160,18 +168,20 @@ export function Search(props: { posts: MarkdownInstance<Record<string, any>>[]; 
 }
 
 function Post(props: { post: Post }) {
-  const { title, description, publishDate, path } = props.post;
+  const { title, description, publishDate, path, readingTime } = props.post;
   const href = `/posts/${path.split('/')?.pop()?.split('.').shift()}`;
   return (
-    <div class='bg-stone-900'>
+    <>
       <h3 class='font-sans font-bold underline'>
         <a href={href}>{title}</a>
       </h3>
       <p>{description}</p>
       <div class='font-bold'>
-        <span class='text-left mr-4 uppercase text-[color:var(--text-secondary)]'>— {publishDate}</span>
+        <span class='text-left mr-4 uppercase text-[color:var(--text-secondary)]'>
+          {publishDate} — {readingTime}
+        </span>
       </div>
-    </div>
+    </>
   );
 }
 

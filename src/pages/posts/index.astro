@@ -1,20 +1,25 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import getPostData from '../../utils/getPostData';
 
 const title = 'jchantrell.dev';
 const description = 'Latest articles.';
 const permalink = `${Astro?.site?.href}posts`;
 
-let allPosts = await Astro.glob('../../data/posts/*.md');
-allPosts = allPosts.sort(
+let posts = await Astro.glob('../../data/posts/*.md');
+posts = posts.sort(
   (a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf(),
 );
+posts = posts.map((post) => ({
+  ...post,
+  ...getPostData(post),
+}));
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current='posts'>
   <div class='container mx-2/4'>
     {
-      allPosts.map((post: any, index: number) => {
+      posts.map((post: any, index: number) => {
         const href = `/posts/${post.file.split('/').pop().split('.').shift()}`;
         return (
           <div>
@@ -26,7 +31,7 @@ allPosts = allPosts.sort(
               <p>{post.frontmatter.description}</p>
               <div class='font-bold'>
                 <span class='text-left mr-4 uppercase text-[color:var(--text-secondary)]'>
-                  — {post.frontmatter.publishDate}
+                  {post.frontmatter.publishDate} — {post.readingTime} 
                 </span>
               </div>
             </div>
