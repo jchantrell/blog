@@ -3,30 +3,36 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'jchantrell.dev';
 const description = 'Latest articles.';
-const permalink = `${Astro.site.href}posts`;
+const permalink = `${Astro?.site?.href}posts`;
 
 let allPosts = await Astro.glob('../../data/posts/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+allPosts = allPosts.sort(
+  (a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf(),
+);
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="posts">
-  <div class="container mx-2/4">
-    {allPosts.map((post, index) => {
-      const href = `/posts/${post.file.split('/').pop().split('.').shift()}`;
-      return (
-        <div>
-          { index !== 0 && <hr class="my-14 mx-auto"/> }
+<BaseLayout title={title} description={description} permalink={permalink} current='posts'>
+  <div class='container mx-2/4'>
+    {
+      allPosts.map((post: any, index: number) => {
+        const href = `/posts/${post.file.split('/').pop().split('.').shift()}`;
+        return (
           <div>
-            <h2 class="font-sans font-bold underline">
-              <a href={href}>{post.frontmatter.title}</a>
-            </h2>
-            <p>{post.frontmatter.description}</p>
-            <div class="font-bold">
-              <span class="text-left mr-4 uppercase text-[color:var(--text-secondary)]">— {post.frontmatter.publishDate}</span>
+            {index !== 0 && <hr class='my-14 mx-auto' />}
+            <div>
+              <h2 class='font-sans font-bold underline'>
+                <a href={href}>{post.frontmatter.title}</a>
+              </h2>
+              <p>{post.frontmatter.description}</p>
+              <div class='font-bold'>
+                <span class='text-left mr-4 uppercase text-[color:var(--text-secondary)]'>
+                  — {post.frontmatter.publishDate}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      )
-    })}
+        );
+      })
+    }
   </div>
 </BaseLayout>

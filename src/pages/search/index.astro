@@ -1,29 +1,18 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Search from "../../components/Search.tsx";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Search from '../../components/Search.tsx';
 
-const title = "jchantrell.dev";
-const description = "Search articles.";
-const permalink = `${Astro.site.href}search`;
-const query = Astro.url.searchParams.get("q")! || "";
+const title = 'jchantrell.dev';
+const description = 'Search articles.';
+const permalink = `${Astro.site?.href}search`;
+const query = Astro.url.searchParams.get('q')! || '';
+const tags = Astro.url.searchParams.getAll('tags')! || [];
 
-let posts = await Astro.glob("../../data/posts/*.md");
-
-const tags = posts.map((post) =>
-  post.frontmatter.tags.split(",").map((entry) => entry.trim()),
-);
-const flattened = tags.reduce((acc, curr) => acc.concat(curr), []);
-const unique = Array.from(new Set(flattened));
-const sorted = unique.sort((a, b) => (a !== b ? (a < b ? -1 : 1) : 0));
+let posts = await Astro.glob('../../data/posts/*.md');
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  permalink={permalink}
-  current="search"
->
-  <div class="container">
-    <Search posts={posts} query={query} } client:load />
+<BaseLayout title={title} description={description} permalink={permalink} current='search'>
+  <div class='container'>
+    <Search posts={posts} query={query} tags={tags} client:load } />
   </div>
 </BaseLayout>
