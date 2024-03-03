@@ -148,21 +148,22 @@ export function Search(props: { posts: MarkdownInstance<Record<string, any>>[]; 
         </For>
       </div>
 
-      <For each={store.posts}>
-        {({ item }) => {
-          const { title, description, publishDate, path } = item;
-          return <Post title={title} description={description} publishDate={publishDate} path={path} />;
-        }}
-      </For>
+      <div class='mt-4'>
+        <For each={store.posts}>
+          {({ item }) => {
+            return <Post post={item} />;
+          }}
+        </For>
+      </div>
     </>
   );
 }
 
-function Post(props: { title: string; description: string; publishDate: string; path: string }) {
-  const { title, description, publishDate, path } = props;
+function Post(props: { post: Post }) {
+  const { title, description, publishDate, path } = props.post;
   const href = `/posts/${path.split('/')?.pop()?.split('.').shift()}`;
   return (
-    <div>
+    <div class='bg-stone-900'>
       <h3 class='font-sans font-bold underline'>
         <a href={href}>{title}</a>
       </h3>

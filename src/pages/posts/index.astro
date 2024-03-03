@@ -18,7 +18,7 @@ allPosts = allPosts.sort(
         const href = `/posts/${post.file.split('/').pop().split('.').shift()}`;
         return (
           <div>
-            {index !== 0 && <hr class='my-14 mx-auto' />}
+            {index !== 0 && <hr class='mx-auto' />}
             <div>
               <h2 class='font-sans font-bold underline'>
                 <a href={href}>{post.frontmatter.title}</a>
