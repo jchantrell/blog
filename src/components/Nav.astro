@@ -1,5 +1,5 @@
 ---
-import Theme from './Theme.svelte';
+import Theme from './Theme.tsx';
 import NavLink from './NavLink.astro';
 const { current = '' } = Astro.props;
 ---
@@ -10,7 +10,7 @@ const { current = '' } = Astro.props;
     <NavLink path='posts' current={current} />
     <NavLink path='search' current={current} />
   </div>
-  <div class='theme-toggle-container'>
+  <div class='justify-self-end'>
     <Theme client:load />
   </div>
 </nav>
