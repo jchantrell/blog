@@ -1,13 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Globe from '../components/Globe.tsx';
+import geojson from '../../public/world.json';
 
+const ip = Astro.clientAddress;
 const title = 'jchantrell.dev';
 const description = "Joel's thoughts, mostly about software";
 const permalink = Astro.site?.href as string;
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink}>
-  <div class='container text-center'>
+  <div id='globe' class='absolute h-full w-full inset-center'>
+    <Globe ip={ip} geojson={geojson} client:only='solid-js' />
+  </div>
+  <div class='container text-center z-0'>
     <p>
       Hi, I'm Joel. I'm a software engineer based in South Australia. I'm currently working for <a
         href='https://versent.com.au/'
