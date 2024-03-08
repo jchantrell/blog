@@ -4,10 +4,10 @@
 
 :root {
   --background: #fafaf9; /* stone-50 */
-  --text-primary: #0c0a09; /* stone-800 */
+  --text-primary: #0c0a09; /* stone-950 */
   --text-secondary: #44403c; /* stone-700 */
   --primary-color: #047857; /* emerald-700 */
-  --secondary-color: #fff; /* stone-600 */
+  --secondary-color: #e7e5e4; /* stone-200 */
   --font-family-serif: Merriweather, serif;
   --font-family-sans: 'Fira Sans', sans-serif;
 }
