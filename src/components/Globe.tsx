@@ -1,38 +1,47 @@
-import { Suspense, createEffect, createResource, createSignal, on, onMount } from 'solid-js';
-import Engine from '../utils/three';
+import { Suspense, createEffect, createSignal, on, onCleanup, onMount } from 'solid-js';
+import Engine, { type GeoJson } from '../utils/three';
 
-const engine = new Engine();
-
-function Globe(props: { ip: string; geojson: { features: object[] } }) {
-  const [location] = createResource(props.ip, fetchLocation);
+function Globe(props: { geojson: GeoJson }) {
   const [size, setSize] = createSignal<[number, number]>([0, 0]);
 
-  onMount(() => {
-    const container = document.getElementById('globe') as HTMLElement;
-    window.addEventListener('resize', () => {
-      setSize([container.offsetHeight, container.offsetWidth]);
-    });
-    setSize([container.offsetHeight, container.offsetWidth]);
-  });
+  const engine = new Engine();
 
   createEffect(on(size, () => engine.resize(...size())));
 
-  createEffect(
-    on(
-      location,
-      () => {
-        engine.init([location()], props.geojson);
-      },
-      { defer: true },
-    ),
+  onMount(() => {
+    const container = document.getElementById('globe') as HTMLElement;
+    setSize([container.offsetHeight, container.offsetWidth]);
+    window.addEventListener('resize', () => {
+      setSize([container.offsetHeight, container.offsetWidth]);
+    });
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(({ target }) => {
+        if (target instanceof HTMLElement && target.classList.contains('theme-dark')) {
+          engine.setTheme('dark');
+        } else engine.setTheme('light');
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    const curtain = document.getElementById('curtain') as HTMLElement;
+    engine.init(props.geojson, document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light', curtain);
+  });
+
+  onCleanup(() => {
+    engine.stop();
+  });
+
+  return (
+    <Suspense>
+      <div id='curtain' class='absolute pointer-events-none z-10 w-full h-full bg-[color:var(--background)]'></div>
+      {engine.canvas()}
+    </Suspense>
   );
-
-  return <Suspense>{engine.canvas()}</Suspense>;
-}
-
-async function fetchLocation(ip: string) {
-  const response = await fetch(`https://ipapi.co/${ip}/json/`);
-  return response.json();
 }
 
 export default Globe;

@@ -23,6 +23,7 @@
 html {
   overflow-y: scroll;
 }
+
 @supports (scrollbar-gutter: stable) {
   html {
     overflow-y: auto;
@@ -33,6 +34,11 @@ html {
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+canvas {
+  z-index: 1;
+  position: relative;
 }
 
 body {
@@ -143,7 +149,7 @@ hr {
   border: 0;
   height: 1px;
   margin: 30px auto;
-  background-color: var(--text-secondary);
+  background: var(--text-secondary);
 }
 
 code {
