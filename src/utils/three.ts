@@ -2,15 +2,35 @@ import * as THREE from 'three';
 import ThreeGlobe from 'three-globe';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+export type GeoJson = {
+  type: string;
+  name: string;
+  bbox: number[];
+  crs: { type: string; properties: { name: string } };
+  features: Feature[];
+};
+
+type Feature = {
+  type: string;
+  bbox: number[];
+  properties: { [key: string | number]: any };
+  geometry: { type: string; coordinates: number[][][] | number[][][][] };
+};
+
+const darkThemeHex = 'rgba(100,94,94,1)';
+const lightThemeHex = `rgba(255,255,255,1)`;
+
 class Engine {
   private scene: THREE.Scene;
   private camera: THREE.PerspectiveCamera;
   private renderer: THREE.WebGLRenderer;
   private controls: OrbitControls;
-  private globe: ThreeGlobe;
+  private globe: ThreeGlobe | undefined;
 
+  active: boolean = false;
   height: number = window.innerHeight;
   width: number = window.innerWidth;
+  hexColor: string = lightThemeHex;
 
   constructor() {
     this.scene = new THREE.Scene();
@@ -25,29 +45,14 @@ class Engine {
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.rotateSpeed = 0.2;
-    this.controls.zoomSpeed = 0.8;
     this.controls.enableRotate = true;
+    this.controls.enableZoom = false;
     this.controls.enablePan = false;
-
-    this.globe = new ThreeGlobe();
-    this.scene.add(this.globe);
   }
 
-  init(
-    locations: {
-      latitude: number;
-      longitude: number;
-    }[],
-    geojson: { features: object[] },
-  ) {
-    const rLocations = locations.map((loc) => ({
-      lat: loc.latitude,
-      lng: loc.longitude,
-      maxR: 5,
-      propagationSpeed: 1,
-      repeatPeriod: Math.random() * 2000 + 200,
-    }));
-
+  init(geojson: GeoJson, theme: 'light' | 'dark', curtainElement: HTMLElement) {
+    this.globe = new ThreeGlobe({ animateIn: false });
+    this.globe.onGlobeReady(() => this.easeIn(curtainElement));
     this.globe
       .showGlobe(false)
       .showAtmosphere(false)
@@ -55,23 +60,43 @@ class Engine {
       .hexPolygonResolution(3)
       .hexPolygonMargin(0.35)
       .hexPolygonUseDots(false)
-      .hexPolygonColor(() => '#121212')
-      .ringsData(rLocations)
-      .ringColor(() => `rgba(255,100,50,1)`)
-      .ringMaxRadius('maxR')
-      .ringPropagationSpeed('propagationSpeed')
-      .ringRepeatPeriod('repeatPeriod');
+      .ringColor(() => '#00e031');
 
+    this.scene.add(this.globe);
+    this.active = true;
+    this.setTheme(theme);
     this.animate();
   }
 
   animate() {
-    this.globe.rotation.x += 0.001;
-    this.globe.rotation.y += 0.001;
-    this.globe.rotation.z += 0.001;
+    if (this.globe) {
+      this.globe.rotation.x += 0.001;
+      this.globe.rotation.y += 0.001;
+      this.globe.rotation.z += 0.001;
+    }
     this.controls.update();
-    requestAnimationFrame(() => this.animate());
+    requestAnimationFrame(() => {
+      if (this.active) this.animate();
+    });
     this.renderer.render(this.scene, this.camera);
+  }
+
+  stop() {
+    this.active = false;
+    this.renderer.dispose();
+    this.cleanObjects();
+  }
+
+  setTheme(theme: 'light' | 'dark') {
+    if (this.globe) {
+      this.globe.hexPolygonColor(() => (theme === 'dark' ? darkThemeHex : lightThemeHex));
+    }
+  }
+
+  easeIn(curtainElement: HTMLElement) {
+    setTimeout(() => {
+      curtainElement.classList.add('transition-opacity', 'ease-in', 'duration-1000', 'opacity-0');
+    }, 200);
   }
 
   canvas() {
@@ -79,10 +104,37 @@ class Engine {
   }
 
   resize(height: number, width: number) {
-    console.log(height, width);
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
+  }
+
+  cleanObjects() {
+    this.scene.traverse((object) => {
+      if (object instanceof THREE.Mesh === false) {
+        return;
+      }
+
+      object.geometry.dispose();
+
+      if (object.material.isMaterial) {
+        return this.cleanMaterial(object.material);
+      }
+
+      for (const material of object.material) {
+        return this.cleanMaterial(material);
+      }
+    });
+  }
+
+  cleanMaterial(material: THREE.Material) {
+    material.dispose();
+    for (const key of Object.keys(material)) {
+      const value = material[key as keyof THREE.Material];
+      if (value && typeof value === 'object' && 'minFilter' in value) {
+        value.dispose();
+      }
+    }
   }
 }
 

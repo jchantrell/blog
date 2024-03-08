@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Globe from '../components/Globe.tsx';
 import geojson from '../../public/world.json';
 
-const ip = Astro.clientAddress;
 const title = 'jchantrell.dev';
 const description = "Joel's thoughts, mostly about software";
 const permalink = Astro.site?.href as string;
@@ -11,21 +10,23 @@ const permalink = Astro.site?.href as string;
 
 <BaseLayout title={title} description={description} permalink={permalink}>
   <div id='globe' class='absolute h-full w-full inset-center'>
-    <Globe ip={ip} geojson={geojson} client:only='solid-js' />
+    <Globe geojson={geojson} client:only='solid-js' />
   </div>
-  <div class='container text-center z-0'>
+  <div class='container text-center z-0 pointer-events-none'>
     <p>
       Hi, I'm Joel. I'm a software engineer based in South Australia. I'm currently working for <a
         href='https://versent.com.au/'
+        class='pointer-events-auto'
         target='_blank'>Versent</a
       > within their Digital practice. I use this website to document my learnings and anything else I think is worth sharing.
     </p>
     <p>If you want to contact me, feel free to use any of the links below:</p>
     <p>
-      <a href='https://github.com/' target='_blank'>Github</a> · <a
+      <a class='pointer-events-auto' href='https://github.com/' target='_blank'>Github</a> · <a
+        class='pointer-events-auto'
         href='https://www.linkedin.com/in/jchantrell/'
         target='_blank'>LinkedIn</a
-      > · <a href='mailto:joel@jchantrell.dev' target='_blank'>Mail</a>
+      > · <a class='pointer-events-auto' href='mailto:joel@jchantrell.dev' target='_blank'>Mail</a>
     </p>
   </div>
 </BaseLayout>
