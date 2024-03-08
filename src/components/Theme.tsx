@@ -1,4 +1,4 @@
-import { For, createEffect, createSignal, on, onMount, type Setter } from 'solid-js';
+import { createEffect, createSignal, on, onMount, type Setter } from 'solid-js';
 
 export function Theme() {
   const [theme, setTheme] = createSignal('');
