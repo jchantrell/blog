@@ -8,8 +8,9 @@ import solidJs from '@astrojs/solid-js';
 import node from '@astrojs/node';
 
 export default defineConfig({
-  site: 'https://astro-blog-template.netlify.app',
+  site: 'https://jchantrell.dev',
   integrations: [mdx(), tailwind(), solidJs()],
+  prefetch: true,
   markdown: {
     shikiConfig: {
       theme: 'nord',

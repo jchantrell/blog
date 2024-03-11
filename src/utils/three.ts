@@ -59,8 +59,7 @@ class Engine {
       .hexPolygonsData(geojson.features)
       .hexPolygonResolution(3)
       .hexPolygonMargin(0.35)
-      .hexPolygonUseDots(false)
-      .ringColor(() => '#00e031');
+      .hexPolygonUseDots(false);
 
     this.scene.add(this.globe);
     this.active = true;
@@ -83,7 +82,6 @@ class Engine {
 
   stop() {
     this.active = false;
-    this.renderer.dispose();
     this.cleanObjects();
   }
 
