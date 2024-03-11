@@ -82,6 +82,7 @@ class Engine {
 
   stop() {
     this.active = false;
+    this.renderer.dispose();
     this.cleanObjects();
   }
 

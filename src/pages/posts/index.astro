@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import getPostData from '../../utils/getPostData';
+import getPostData from '../../utils/posts';
 
 const title = 'jchantrell.dev';
 const description = 'Latest articles.';
@@ -31,7 +31,7 @@ posts = posts.map((post) => ({
               <p>{post.frontmatter.description}</p>
               <div class='font-bold'>
                 <span class='text-left mr-4 uppercase text-[color:var(--text-secondary)]'>
-                  {post.frontmatter.publishDate} — {post.readingTime} 
+                  {post.frontmatter.publishDate} — {post.readingTime}
                 </span>
               </div>
             </div>

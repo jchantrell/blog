@@ -1,4 +1,4 @@
-import type { MarkdownInstance } from 'astro';
+import type { MarkdownPost } from '../utils/posts';
 import Fuse, { type FuseResult } from 'fuse.js';
 import { createSignal, onMount, createEffect, on, For } from 'solid-js';
 import { createStore, type SetStoreFunction } from 'solid-js/store';
@@ -22,7 +22,7 @@ enum Operator {
   Or = ' | ',
 }
 
-export function Search(props: { posts: MarkdownInstance<Record<string, any>>[]; query: string; tags: string[] }) {
+export function Search(props: { posts: MarkdownPost[]; query: string; tags: string[] }) {
   const [searchTerm, setSearchTerm] = createSignal<string>(props.query);
   const [tagFilter, setTagFilter] = createSignal<string[]>(props.tags);
   const [store, setStore] = createStore<{ posts: FuseResult<Post>[]; tags: Tag[] }>({
@@ -102,7 +102,7 @@ export function Search(props: { posts: MarkdownInstance<Record<string, any>>[]; 
         description: post.frontmatter.description,
         tags: post.frontmatter.tags.split(',').map((tag: string) => tag.trim()),
         publishDate: post.frontmatter.publishDate,
-        readingTime: post.readingTime,
+        readingTime: post.readingTime || '',
         path: post.file,
       });
     }

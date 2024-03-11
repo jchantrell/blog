@@ -2,7 +2,7 @@
 export const prerender = true;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import getPostData from '../../utils/getPostData';
+import getPostData from '../../utils/posts';
 
 export async function getStaticPaths(): Promise<any[]> {
   const posts: any[] = await Astro.glob('../../data/posts/*.md');
