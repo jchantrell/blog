@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Globe from '../components/Globe.tsx';
+import GlobeLazy from '../components/GlobeLazy.jsx';
 import geojson from '../../public/world.json';
 
 const title = 'jchantrell.dev';
@@ -10,15 +10,13 @@ const permalink = Astro.site?.href as string;
 
 <BaseLayout title={title} description={description} permalink={permalink}>
   <div id='globe' class='absolute h-full w-full inset-center'>
-    <Globe geojson={geojson} client:only='solid-js' />
+    <GlobeLazy transition:persist client:only='solidjs' geojson={geojson} />
   </div>
   <div class='container text-center z-0 pointer-events-none'>
     <p>
-      Hi, I'm Joel. I'm a software engineer based in South Australia. I'm currently working for <a
-        href='https://versent.com.au/'
-        class='pointer-events-auto'
-        target='_blank'>Versent</a
-      > within their Digital practice. I use this website to document my learnings and anything else I think is worth sharing.
+      Hi, I'm Joel. I'm a software engineer based in South Australia. I'm currently working for
+      <a href='https://versent.com.au/' class='pointer-events-auto' target='_blank'>Versent</a> within their Digital practice.
+      I use this website to document my learnings and anything else I think is worth sharing.
     </p>
     <p>If you want to contact me, feel free to use any of the links below:</p>
     <p>

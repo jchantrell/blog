@@ -1,4 +1,4 @@
-import { Suspense, createEffect, createSignal, on, onCleanup, onMount } from 'solid-js';
+import { createEffect, createSignal, on, onCleanup, onMount } from 'solid-js';
 import Engine, { type GeoJson } from '../utils/three';
 
 function Globe(props: { geojson: GeoJson }) {
@@ -37,10 +37,10 @@ function Globe(props: { geojson: GeoJson }) {
   });
 
   return (
-    <Suspense>
+    <>
       <div id='curtain' class='absolute pointer-events-none z-10 w-full h-full bg-[color:var(--background)]'></div>
       {engine.canvas()}
-    </Suspense>
+    </>
   );
 }
 

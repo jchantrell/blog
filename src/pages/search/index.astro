@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Search from '../../components/Search.tsx';
-import getPostData from '../../utils/getPostData';
+import getPostData from '../../utils/posts';
 
 const title = 'jchantrell.dev';
 const description = 'Search articles.';
@@ -9,11 +9,10 @@ const permalink = `${Astro.site?.href}search`;
 const query = Astro.url.searchParams.get('q')! || '';
 const tags = Astro.url.searchParams.getAll('tags')! || [];
 
-
 let posts = await Astro.glob('../../data/posts/*.md');
 posts = posts.map((post) => ({
-...post,
-...getPostData(post),
+  ...post,
+  ...getPostData(post),
 }));
 ---
 
