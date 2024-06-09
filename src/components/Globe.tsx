@@ -1,6 +1,6 @@
 import { createEffect, createSignal, on, onCleanup, onMount } from 'solid-js';
 import Engine from '../utils/three';
-import geojson from '../../public/world.json';
+import geojson from '../world.json';
 
 function Globe() {
   const [size, setSize] = createSignal<[number, number]>([0, 0]);
