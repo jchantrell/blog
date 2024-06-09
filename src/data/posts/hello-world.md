@@ -2,7 +2,8 @@
 title: Hello World
 publishDate: 25 Feb 2024
 description: Hi!
-tags: a
+image: assets/astro-logo-dark.png
+tags: web, astro, three.js, solidjs
 ---
 
 # <a name="Blockquotes"></a>Blockquotes

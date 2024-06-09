@@ -23,16 +23,6 @@
   --text-muted: #a8a29e; /* stone-400 */
 }
 
-html {
-  overflow-y: scroll;
-}
-
-@supports (scrollbar-gutter: stable) {
-  html {
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-  }
-}
 *,
 *:before,
 *:after {
@@ -40,7 +30,7 @@ html {
 }
 
 body::-webkit-scrollbar {
-  width: 1em;
+  width: 0.5em;
 }
 
 body::-webkit-scrollbar-track {

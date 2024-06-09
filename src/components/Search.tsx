@@ -7,6 +7,7 @@ type Post = {
   title: string;
   description: string;
   tags: string[];
+  image: string;
   publishDate: string;
   readingTime: string;
   path: string;
@@ -106,6 +107,7 @@ export function Search(props: { posts: MarkdownPost[]; query: string; tags: stri
       posts.push({
         title: post.frontmatter.title,
         description: post.frontmatter.description,
+        image: post.frontmatter.image,
         tags: post.frontmatter.tags.split(',').map((tag: string) => tag.trim()),
         publishDate: post.frontmatter.publishDate,
         readingTime: post.readingTime || '',
@@ -173,17 +175,20 @@ export function Search(props: { posts: MarkdownPost[]; query: string; tags: stri
 }
 
 function Post(props: { post: Post }) {
-  const { title, description, publishDate, path, readingTime } = props.post;
+  const { title, description, image, publishDate, path, readingTime } = props.post;
   const href = `/posts/${path.split('/')?.pop()?.split('.').shift()}`;
   return (
     <a href={href}>
-      <div class='bg-[color:var(--foreground)] rounded-md p-4 mb-4'>
-        <h3 class='font-sans font-bold'>{title}</h3>
-        <p class='text-sm text-[color:var(--text-secondary)]'>{description}</p>
-        <div class='font-bold'>
-          <span class='text-left mr-4 text-[color:var(--text-secondary)] text-xs'>
-            {publishDate} — {readingTime}
-          </span>
+      <div class='flex'>
+        <image href={image} />
+        <div class='bg-[color:var(--foreground)] rounded-md p-4 mb-4'>
+          <h3 class='font-sans font-bold'>{title}</h3>
+          <p class='text-sm text-[color:var(--text-secondary)]'>{description}</p>
+          <div class='font-bold'>
+            <span class='text-left mr-4 text-[color:var(--text-secondary)] text-xs'>
+              {publishDate} — {readingTime}
+            </span>
+          </div>
         </div>
       </div>
     </a>
