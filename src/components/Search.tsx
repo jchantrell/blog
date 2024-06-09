@@ -44,6 +44,12 @@ export function Search(props: { posts: MarkdownPost[]; query: string; tags: stri
     const tagArgs = [{ $path: ['tags'], $val: filter }];
 
     const args: { [key: string]: any } = {};
+
+    // if no search text or tag filter present -> inverse exact match to return all docs
+    // fuse doesnt provide a native solution for this: https://github.com/krisk/Fuse/issues/229
+    if (!query.length && !filter.length) {
+      args['title'] = '!1234567890';
+    }
     // if no tag filter is present -> OR search by text
     if (query.length && !filter.length) {
       args['$or'] = textArgs;
@@ -139,7 +145,7 @@ export function Search(props: { posts: MarkdownPost[]; query: string; tags: stri
         id='search'
         value={searchTerm()}
         onInput={(e) => setSearchTerm(e.target.value)}
-        class='py-1.5 px-4 bg-[color:var(--background)] outline-none ring-1 ring-[color:var(--secondary-color)] focus:ring-[color:var(--text-secondary)] outline-1 rounded-md h-10 w-full placeholder:text-stone-500'
+        class='py-1.5 px-4 bg-[color:var(--background)] outline-none ring-1 ring-[color:var(--muted)] focus:ring-[color:var(--text-secondary)] outline-1 rounded-md h-10 w-full placeholder:text-[color:var(--text-muted)]'
         placeholder={`${props.posts[Math.floor(Math.random() * props.posts.length)].frontmatter.title}...`}
       />
 
@@ -153,10 +159,9 @@ export function Search(props: { posts: MarkdownPost[]; query: string; tags: stri
 
       <div class='mt-6'>
         <For each={store.posts}>
-          {({ item }, i) => {
+          {({ item }) => {
             return (
               <>
-                {i() !== 0 && <hr class='mx-auto' />}
                 <Post post={item} />
               </>
             );
@@ -171,17 +176,17 @@ function Post(props: { post: Post }) {
   const { title, description, publishDate, path, readingTime } = props.post;
   const href = `/posts/${path.split('/')?.pop()?.split('.').shift()}`;
   return (
-    <>
-      <h3 class='font-sans font-bold underline'>
-        <a href={href}>{title}</a>
-      </h3>
-      <p>{description}</p>
-      <div class='font-bold'>
-        <span class='text-left mr-4 uppercase text-[color:var(--text-secondary)]'>
-          {publishDate} — {readingTime}
-        </span>
+    <a href={href}>
+      <div class='bg-[color:var(--foreground)] rounded-md p-4 mb-4'>
+        <h3 class='font-sans font-bold'>{title}</h3>
+        <p class='text-sm text-[color:var(--text-secondary)]'>{description}</p>
+        <div class='font-bold'>
+          <span class='text-left mr-4 text-[color:var(--text-secondary)] text-xs'>
+            {publishDate} — {readingTime}
+          </span>
+        </div>
       </div>
-    </>
+    </a>
   );
 }
 
@@ -202,10 +207,10 @@ function Tag(props: { tag: Tag; setStore: SetStoreFunction<{ tags: Tag[] }> }) {
       class={
         props.tag.selected
           ? 'bg-[color:var(--primary-color)] text-white py-1 px-2 rounded-md cursor-pointer text-lg'
-          : 'bg-[color:var(--secondary-color)] py-1 px-2 rounded-md cursor-pointer text-lg'
+          : 'bg-[color:var(--foreground)] py-1 px-2 rounded-md cursor-pointer text-lg'
       }
     >
-      {props.tag.id}
+      {props.tag.id.replace('-', ' ')}
     </div>
   );
 }

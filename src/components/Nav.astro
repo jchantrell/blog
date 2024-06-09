@@ -8,7 +8,6 @@ const { current = '' } = Astro.props;
   <div class='flex items-baseline self-start'>
     <NavLink path='home' current={current} />
     <NavLink path='posts' current={current} />
-    <NavLink path='search' current={current} />
   </div>
   <Theme client:load />
 </nav>

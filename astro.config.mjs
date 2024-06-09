@@ -5,8 +5,7 @@ import remarkSmartypants from 'remark-smartypants';
 import rehypeExternalLinks from 'rehype-external-links';
 import tailwind from '@astrojs/tailwind';
 import solidJs from '@astrojs/solid-js';
-import node from '@astrojs/node';
-import vercel from "@astrojs/vercel/serverless";
+import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,13 +14,19 @@ export default defineConfig({
   prefetch: true,
   markdown: {
     shikiConfig: {
-      theme: 'nord'
+      theme: 'nord',
     },
     remarkPlugins: [remarkGfm, remarkSmartypants],
-    rehypePlugins: [[rehypeExternalLinks, {
-      target: '_blank'
-    }]]
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+        },
+      ],
+    ],
   },
   output: 'server',
-  adapter: vercel()
+  adapter: vercel(),
 });
+
