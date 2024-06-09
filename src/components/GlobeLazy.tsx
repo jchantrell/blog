@@ -5,10 +5,10 @@ const Globe = lazy(async () => {
   return import('./Globe');
 });
 
-function GlobeLazy(props: { geojson: GeoJson }) {
+function GlobeLazy() {
   return (
     <Suspense>
-      <Globe geojson={props.geojson} />
+      <Globe />
     </Suspense>
   );
 }

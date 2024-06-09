@@ -1,7 +1,8 @@
 import { createEffect, createSignal, on, onCleanup, onMount } from 'solid-js';
-import Engine, { type GeoJson } from '../utils/three';
+import Engine from '../utils/three';
+import geojson from '../../public/world.json';
 
-function Globe(props: { geojson: GeoJson }) {
+function Globe() {
   const [size, setSize] = createSignal<[number, number]>([0, 0]);
 
   const engine = new Engine();
@@ -29,7 +30,7 @@ function Globe(props: { geojson: GeoJson }) {
     });
 
     const curtain = document.getElementById('curtain') as HTMLElement;
-    engine.init(props.geojson, document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light', curtain);
+    engine.init(geojson, document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light', curtain);
   });
 
   onCleanup(() => {

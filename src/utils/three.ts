@@ -13,7 +13,7 @@ export type GeoJson = {
 type Feature = {
   type: string;
   bbox: number[];
-  properties: { [key: string | number]: any };
+  properties?: { [key: string | number]: any };
   geometry: { type: string; coordinates: number[][][] | number[][][][] };
 };
 
