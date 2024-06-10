@@ -5,26 +5,36 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import getPostData from '../../utils/posts';
 
 export async function getStaticPaths(): Promise<any[]> {
-  const posts: any[] = await Astro.glob('../../data/posts/*.md');
-  return posts.map((p: any) => ({
-    params: { slug: p.file.split('/').pop().split('.').shift() },
-    props: { post: p },
-  }));
+  const posts: any[] = await Astro.glob('../../data/posts/*/*.md');
+  return posts.map((p: any) => {
+    const filePath = p.file.split('/');
+    return {
+      params: { slug: filePath[filePath.length - 2] },
+      props: { post: p },
+    };
+  });
 }
 
 const { Content, frontmatter } = Astro.props.post;
 const { title, description, publishDate } = frontmatter;
 const { slug, readingTime } = getPostData(Astro.props.post);
 const permalink = `${Astro.site?.href}posts/${slug}`;
-const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/posts/${slug}.md`;
+const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/posts/${slug}/post.md`;
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current='posts'>
-  <header class='text-center mb-2 uppercase font-sans font-bold min-w-24 text-[color:var(--text-secondary)]'>
+  <header class='text-center mb-2 uppercase font-bold min-w-24 text-[color:var(--text-secondary)]'>
     <h1 class='mb-2'>{title}</h1>
-    <p class='text-[color:var(--text-secondary)]'>
-      {publishDate} ~ {readingTime}
+    <p class='text-[color:var(--text-secondary)] m-0'>
+      {publishDate} - {readingTime}
     </p>
+    <div class='mb-2'>
+      {
+        frontmatter.tags
+          .split(', ')
+          .map((tag) => <a class='lowercase mx-1 text-[color:var(--text-muted)]'>{`#${tag}`}</a>)
+      }
+    </div>
     <hr class='min-w-24' />
   </header>
   <div class='container'>

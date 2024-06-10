@@ -94,8 +94,8 @@ class Engine {
 
   easeIn(curtainElement: HTMLElement) {
     setTimeout(() => {
-      curtainElement.classList.add('transition-opacity', 'ease-in', 'duration-1000', 'opacity-0');
-    }, 200);
+      curtainElement.classList.add('transition-opacity', 'ease-in', 'duration-500', 'opacity-0');
+    }, 100);
   }
 
   canvas() {

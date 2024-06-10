@@ -8,19 +8,19 @@ const permalink = Astro.site?.href as string;
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink}>
-  <div class='relative flex flex-1 items-center'>
+  <div class='relative flex flex-1 items-center h-full'>
     <div id='globe' class='absolute h-full w-full inset-center'>
       <GlobeLazy transition:persist client:only='solidjs' />
     </div>
     <div class='container text-center z-0 pointer-events-none'>
-      <p class='text-lg'>Hi, I'm Joel, a lifelong geek and an avid learner and tinkerer</p>
-      <p class='text-lg'>
-        For me, life is about growth, creation and finding joy in what you do. I love to solve problems and I love to
-        help others - in spirit of that I use this website to document my thoughts, learnings and anything else I think
-        others may benefit from
+      <p>Hi, I'm Joel.</p>
+      <p>
+        I'm an avid learner and tinkerer that loves to design and build systems. I work professionally in software and
+        cloud engineering and do a lot of recreational programming in my spare time. I use this website to document my
+        thoughts, learnings and anything else I think others may benefit from.
       </p>
-      <p class='text-lg'>If you would like to contact me, you can use the links below</p>
-      <p class='text-lg'>
+      <p>If you would like to contact me, you can use the links below:</p>
+      <p>
         <a class='pointer-events-auto' href='https://github.com/jchantrell' target='_blank'>Github</a> · <a
           class='pointer-events-auto'
           href='https://www.linkedin.com/in/jchantrell/'

@@ -14,7 +14,11 @@ export default defineConfig({
   prefetch: true,
   markdown: {
     shikiConfig: {
-      theme: 'nord',
+      wrap: true,
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
     },
     remarkPlugins: [remarkGfm, remarkSmartypants],
     rehypePlugins: [
@@ -29,4 +33,3 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
 });
-

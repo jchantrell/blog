@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Search from '../../components/Search.tsx';
+import Posts from '../../components/Posts.tsx';
 import getPostData from '../../utils/posts';
 
 const title = 'jchantrell.dev';
@@ -9,9 +9,9 @@ const permalink = `${Astro?.site?.href}posts`;
 const query = Astro.url.searchParams.get('q')! || '';
 const tags = Astro.url.searchParams.getAll('tags')! || [];
 
-let posts = await Astro.glob('../../data/posts/*.md');
+let posts = await Astro.glob('../../data/posts/*/*.md');
 posts = posts.sort(
-  (a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf(),
+  (a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontratter.publishDate).valueOf(),
 );
 posts = posts.map((post) => ({
   ...post,
@@ -21,6 +21,6 @@ posts = posts.map((post) => ({
 
 <BaseLayout title={title} description={description} permalink={permalink} current='posts'>
   <div class='container mx-2/4'>
-    <Search posts={posts} query={query} tags={tags} client:load } />
+    <Posts posts={posts} query={query} tags={tags} client:load } />
   </div>
 </BaseLayout>
