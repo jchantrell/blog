@@ -3,7 +3,7 @@ import type { MarkdownInstance } from 'astro';
 
 export interface MarkdownPost extends MarkdownInstance<Record<string, any>> {
   readingTime?: string;
-  slug: string;
+  slug?: string;
 }
 
 export default function getPostData(post: MarkdownInstance<Record<string, any>>) {

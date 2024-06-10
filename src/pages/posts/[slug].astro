@@ -32,7 +32,7 @@ const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/pos
       {
         frontmatter.tags
           .split(', ')
-          .map((tag) => <a class='lowercase mx-1 text-[color:var(--text-muted)]'>{`#${tag}`}</a>)
+          .map((tag: string) => <a class='lowercase mx-1 text-[color:var(--text-muted)]'>{`#${tag}`}</a>)
       }
     </div>
     <hr class='min-w-24' />

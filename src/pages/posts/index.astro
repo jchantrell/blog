@@ -11,7 +11,7 @@ const tags = Astro.url.searchParams.getAll('tags')! || [];
 
 let posts = await Astro.glob('../../data/posts/*/*.md');
 posts = posts.sort(
-  (a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontratter.publishDate).valueOf(),
+  (a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf(),
 );
 posts = posts.map((post) => ({
   ...post,
