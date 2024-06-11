@@ -130,6 +130,20 @@ Ex amet id ex aliquip id do laborum excepteur exercitation elit sint commodo occ
 </button>
 ```
 
+```js
+async function query(sql: string) {
+  try { 
+
+    // some comment
+    const result = await db.submit(sql)
+
+    return result.data
+  } catch (err) {
+    console.error(err)
+  }
+}
+```
+
 [[Top]](#top)
 
 # <a name="Inline"></a>Inline elements

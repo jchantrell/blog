@@ -15,10 +15,7 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       wrap: true,
-      themes: {
-        light: 'github-light',
-        dark: 'github-dark',
-      },
+      theme: 'css-variables',
     },
     remarkPlugins: [remarkGfm, remarkSmartypants],
     rehypePlugins: [
