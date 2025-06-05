@@ -8,7 +8,7 @@ const permalink = Astro.site?.href as string;
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink}>
-  <div class='relative flex flex-1 items-center h-full w-full'>
+  <div class='relative flex items-center size-full'>
     <div id='globe' class='absolute h-full w-full inset-center'>
       <GlobeLazy transition:persist client:only='solidjs' />
     </div>

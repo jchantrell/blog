@@ -18,7 +18,7 @@ const { title, description, permalink, current } = Astro.props;
   </head>
   <body class='min-h-screen h-full flex flex-col'>
     <Header current={current} />
-    <main class='size-full py-4 px-8'>
+    <main class='size-full py-4 px-8 min-h-min'>
       <slot />
     </main>
     <Footer />
