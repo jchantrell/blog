@@ -8,15 +8,15 @@ const permalink = Astro.site?.href as string;
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink}>
-  <div class='relative flex flex-1 items-center h-full'>
+  <div class='relative flex flex-1 items-center h-full w-full'>
     <div id='globe' class='absolute h-full w-full inset-center'>
       <GlobeLazy transition:persist client:only='solidjs' />
     </div>
     <div class='container text-center z-0 pointer-events-none'>
       <p>Hi, I'm Joel.</p>
       <p>
-        I'm an avid learner and tinkerer that loves to design and build systems. I work professionally in software and
-        cloud engineering and do a lot of recreational programming in my spare time. I use this website to document my
+        I'm an avid learner and tinkerer that loves to design and build systems. I work professionally in software
+        engineering and do a lot of recreational programming in my spare time. I use this website to document my
         thoughts, learnings and anything else I think others may benefit from.
       </p>
       <p>If you would like to contact me, you can use the links below:</p>
@@ -25,7 +25,7 @@ const permalink = Astro.site?.href as string;
           class='pointer-events-auto'
           href='https://www.linkedin.com/in/jchantrell/'
           target='_blank'>LinkedIn</a
-        > · <a class='pointer-events-auto' href='mailto:joel@jchantrell.dev' target='_blank'>Mail</a>
+        > · <a class='pointer-events-auto' href='mailto:me@jchantrell.dev' target='_blank'>Mail</a>
       </p>
     </div>
   </div>
