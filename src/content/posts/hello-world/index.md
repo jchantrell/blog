@@ -4,7 +4,7 @@ publishDate: 25 Feb 2024
 description: Hi!
 image: ./astro-logo.svg
 tags: web, astro, three.js, solidjs
-slug: "hello-world"
+slug: 'hello-world'
 ---
 
 # <a name="Blockquotes"></a>Blockquotes
@@ -99,17 +99,13 @@ Et fugiat ad nisi amet magna labore do cillum fugiat occaecat cillum Lorem proid
     />
   </div>
   <div class="mt-4 md:mt-0 md:ml-6">
-    <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
-      Marketing
-    </div>
-    <a
-      href="#"
-      class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
+    <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">Marketing</div>
+    <a href="#" class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
       >Finding customers for your new business</a
     >
     <p class="mt-2 text-gray-600">
-      Getting a new business off the ground is a lot of hard work. Here are five
-      ideas you can use to find your first customers.
+      Getting a new business off the ground is a lot of hard work. Here are five ideas you can use to find your first
+      customers.
     </p>
   </div>
 </div>
@@ -119,21 +115,19 @@ Ex amet id ex aliquip id do laborum excepteur exercitation elit sint commodo occ
 
 ```html
 <script>
-  let count = 0
+  let count = 0;
 
   function handleClick() {
-    count += 1
+    count += 1;
   }
 </script>
 
-<button on:click="{handleClick}">
-  Clicked {count} {count === 1 ? 'time' : 'times'}
-</button>
+<button on:click="{handleClick}">Clicked {count} {count === 1 ? 'time' : 'times'}</button>
 ```
 
 ```js
 async function query(sql: string) {
-  try { 
+  try {
 
     // some comment
     const result = await db.submit(sql)
@@ -151,9 +145,7 @@ async function query(sql: string) {
 
 Sint ea anim ipsum ad commodo cupidatat do **exercitation** incididunt et minim ad labore sunt. Minim deserunt labore laboris velit nulla incididunt ipsum nulla. Ullamco ad laborum ea qui et anim in laboris exercitation tempor sit officia laborum reprehenderit culpa velit quis. **Consequat commodo** reprehenderit duis [irure](#) esse esse exercitation minim enim Lorem dolore duis irure. Nisi Lorem reprehenderit ea amet excepteur dolor excepteur magna labore proident voluptate ipsum. Reprehenderit ex esse deserunt aliqua ea officia mollit Lorem nulla magna enim. Et ad ipsum labore enim ipsum **cupidatat consequat**. Commodo non ea cupidatat magna deserunt dolore ipsum velit nulla elit veniam nulla eiusmod proident officia.
 
-
 _Proident sit veniam in est proident officia adipisicing_ ea tempor cillum non cillum velit deserunt. Voluptate laborum incididunt sit consectetur Lorem irure incididunt voluptate nostrud. Commodo ut eiusmod tempor cupidatat esse enim minim ex anim consequat. Mollit sint culpa qui laboris quis consectetur ad sint esse. Amet anim anim minim ullamco et duis non irure. Sit tempor adipisicing ea laboris `culpa ex duis sint` anim aute reprehenderit id eu ea. Aute [excepteur proident](#) Lorem minim adipisicing nostrud mollit ad ut voluptate do nulla esse occaecat aliqua sint anim.
-
 
 Incididunt in culpa cupidatat mollit cillum qui proident sit. In cillum aliquip incididunt voluptate magna amet cupidatat cillum pariatur sint aliqua est _enim **anim** voluptate_. Magna aliquip proident incididunt id duis pariatur eiusmod incididunt commodo culpa dolore sit. Culpa do nostrud elit ad exercitation anim pariatur non minim nisi **adipisicing sunt _officia_**. Do deserunt magna mollit Lorem commodo ipsum do cupidatat mollit enim ut elit veniam ea voluptate. Sint ea anim ipsum ad commodo cupidatat do **exercitation** incididunt et minim ad labore sunt. Minim deserunt labore laboris velit nulla incididunt ipsum nulla.
 
