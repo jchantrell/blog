@@ -4,7 +4,7 @@ import Posts from '../../components/Posts.tsx';
 import { getCollection } from 'astro:content';
 import readingTime from 'reading-time';
 
-const title = 'jchantrell.dev';
+const title = 'Posts';
 const description = 'Latest articles.';
 const permalink = `${Astro?.site?.href}posts`;
 const query = Astro.url.searchParams.get('q')! || '';
