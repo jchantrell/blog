@@ -1,23 +1,25 @@
 ---
 export const prerender = true;
 
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import getPostData from '../../utils/posts';
+import readingTime from 'reading-time';
 
-export async function getStaticPaths(): Promise<any[]> {
-  const posts: any[] = await Astro.glob('../../data/posts/*/*.md');
-  return posts.map((p: any) => {
-    const filePath = p.file.split('/');
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((p) => {
     return {
-      params: { slug: filePath[filePath.length - 2] },
+      params: { slug: p.slug },
       props: { post: p },
     };
   });
 }
 
-const { Content, frontmatter } = Astro.props.post;
-const { title, description, publishDate } = frontmatter;
-const { slug, readingTime } = getPostData(Astro.props.post);
+const { post } = Astro.props;
+const { data, slug, render } = post;
+const { Content } = await render();
+
+const { title, description, publishDate } = data;
 const permalink = `${Astro.site?.href}posts/${slug}`;
 const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/posts/${slug}/post.md`;
 ---
@@ -26,11 +28,11 @@ const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/pos
   <header class='text-center mb-2 uppercase font-bold min-w-24 text-[color:var(--text-secondary)]'>
     <h1 class='mb-2'>{title}</h1>
     <p class='text-[color:var(--text-secondary)] m-0'>
-      {publishDate} - {readingTime}
+      {publishDate} - {readingTime(post.body).text}
     </p>
     <div class='mb-2'>
       {
-        frontmatter.tags
+        data.tags
           .split(', ')
           .map((tag: string) => <a class='lowercase mx-1 text-[color:var(--text-muted)]'>{`#${tag}`}</a>)
       }

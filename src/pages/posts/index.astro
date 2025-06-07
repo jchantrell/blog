@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Posts from '../../components/Posts.tsx';
-import getPostData from '../../utils/posts';
+import { getCollection } from 'astro:content';
+import readingTime from 'reading-time';
 
 const title = 'jchantrell.dev';
 const description = 'Latest articles.';
@@ -9,18 +10,23 @@ const permalink = `${Astro?.site?.href}posts`;
 const query = Astro.url.searchParams.get('q')! || '';
 const tags = Astro.url.searchParams.getAll('tags')! || [];
 
-let posts = await Astro.glob('../../data/posts/*/*.md');
-posts = posts.sort(
-  (a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf(),
-);
-posts = posts.map((post) => ({
-  ...post,
-  ...getPostData(post),
-}));
+const posts = await getCollection('posts');
+
+const mappedPosts = posts
+  .map((post) => ({
+    title: post.data.title,
+    description: post.data.description,
+    image: post.data.image.src,
+    tags: post.data.tags.split(',').map((tag: string) => tag.trim()),
+    publishDate: post.data.publishDate,
+    readingTime: readingTime(post.body).text,
+    slug: post.slug || '',
+  }))
+  .sort((a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf());
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current='posts'>
   <div class='container mx-2/4'>
-    <Posts posts={posts} query={query} tags={tags} client:load } />
+    <Posts posts={mappedPosts} query={query} tags={tags} client:load } />
   </div>
 </BaseLayout>

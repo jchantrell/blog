@@ -1,5 +1,3 @@
-import type { MarkdownPost } from '../utils/posts';
-
 import Fuse, { type FuseResult } from 'fuse.js';
 import { createSignal, onMount, createEffect, on, For } from 'solid-js';
 import { createStore, type SetStoreFunction } from 'solid-js/store';
@@ -24,10 +22,13 @@ enum Operator {
   Or = ' | ',
 }
 
-export function Search(props: { posts: MarkdownPost[]; query: string; tags: string[] }) {
+export function Search(props: { posts: Post[]; query: string; tags: string[] }) {
   const [searchTerm, setSearchTerm] = createSignal<string>(props.query);
   const [tagFilter, setTagFilter] = createSignal<string[]>(props.tags);
-  const [store, setStore] = createStore<{ posts: FuseResult<Post>[]; tags: Tag[] }>({
+  const [store, setStore] = createStore<{
+    posts: FuseResult<Post>[];
+    tags: Tag[];
+  }>({
     posts: [],
     tags: [],
   });
@@ -105,15 +106,7 @@ export function Search(props: { posts: MarkdownPost[]; query: string; tags: stri
   onMount(() => {
     const posts: Post[] = [];
     for (const post of props.posts) {
-      posts.push({
-        title: post.frontmatter.title,
-        description: post.frontmatter.description,
-        image: post.frontmatter.image,
-        tags: post.frontmatter.tags.split(',').map((tag: string) => tag.trim()),
-        publishDate: post.frontmatter.publishDate,
-        readingTime: post.readingTime || '',
-        slug: post.slug || '',
-      });
+      posts.push(post);
     }
     setupFuse(posts);
 
@@ -149,7 +142,7 @@ export function Search(props: { posts: MarkdownPost[]; query: string; tags: stri
         value={searchTerm()}
         onInput={(e) => setSearchTerm(e.target.value)}
         class='py-1.5 px-4 bg-[color:var(--background)] outline-none ring-1 ring-[color:var(--muted)] focus:ring-[color:var(--text-secondary)] outline-1 rounded-md h-10 w-full placeholder:text-[color:var(--text-muted)]'
-        placeholder={`${props.posts[Math.floor(Math.random() * props.posts.length)].frontmatter.title}...`}
+        placeholder={`${props.posts[Math.floor(Math.random() * props.posts.length)].title}...`}
       />
 
       <div class='mt-4 flex flex-wrap gap-3'>
@@ -181,7 +174,7 @@ function Post(props: { post: Post }) {
     <a href={`posts/${slug}`}>
       <div class='flex bg-[color:var(--foreground)] rounded-md p-2 mb-4'>
         <figure class='bg-black hidden m-1 sm:flex flex-[0_0_100px] items-center justify-center rounded-md'>
-          <img class='max-w-full' src={`./src/data/posts/hello-world/${image}`} />
+          <img class='max-w-full' src={image} />
         </figure>
         <div class='m-2'>
           <h3 class='font-normal'>{title}</h3>
