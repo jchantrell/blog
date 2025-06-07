@@ -34,7 +34,9 @@ const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/pos
       {
         data.tags
           .split(', ')
-          .map((tag: string) => <a class='lowercase mx-1 text-[color:var(--text-muted)]'>{`#${tag}`}</a>)
+          .map((tag: string) => (
+            <a class='lowercase mx-1 text-[color:var(--text-muted)]' href={`/posts?tags=${tag}`}>{`#${tag}`}</a>
+          ))
       }
     </div>
     <hr class='min-w-24' />
