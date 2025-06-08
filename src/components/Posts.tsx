@@ -201,8 +201,8 @@ function Tag(props: { tag: Tag; setStore: SetStoreFunction<{ tags: Tag[] }> }) {
       id={props.tag.id}
       class={
         props.tag.selected
-          ? 'bg-[color:var(--primary-color)] text-white py-1 px-2 rounded-md cursor-pointer text-lg'
-          : 'bg-[color:var(--foreground)] py-1 px-2 rounded-md cursor-pointer text-lg'
+          ? 'bg-[color:var(--primary-color)] text-white py-1 px-2 rounded-md cursor-pointer'
+          : 'bg-[color:var(--foreground)] py-1 px-2 rounded-md cursor-pointer'
       }
     >
       {props.tag.id.replace('-', ' ')}
