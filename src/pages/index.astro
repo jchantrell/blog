@@ -12,8 +12,8 @@ const permalink = Astro.site?.href as string;
     <div id='globe' class='absolute h-full w-full inset-center z-0'>
       <GlobeLazy transition:persist client:idle client:only='solidjs' />
     </div>
-    <div class='w-full flex justify-center'>
-      <div class='max-w-4xl text-center text-2xl z-1 pointer-events-none w-full'>
+    <div class='w-full flex justify-center pointer-events-none'>
+      <div class='max-w-4xl text-center text-2xl z-1 w-full'>
         <p>Hi, I'm Joel. 👋</p>
         <p>
           I'm an engineer and tinkerer that's been inseparable from computers since I was a child. I work professionally
