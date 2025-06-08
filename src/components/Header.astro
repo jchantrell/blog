@@ -7,8 +7,8 @@ const { current = '' } = Astro.props;
 <header class='flex px-2 py-3 sm:p-3 w-full' id='page-header'>
   <nav class='w-full flex justify-between'>
     <div class='flex items-baseline self-start'>
-      <NavLink path='home' current={current} />
-      <NavLink path='posts' current={current} />
+      <NavLink page='home' current={current} />
+      <NavLink page='posts' current={current} />
     </div>
     <Theme client:load />
   </nav>

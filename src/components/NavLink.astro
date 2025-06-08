@@ -1,16 +1,22 @@
 ---
-const { current = '', path } = Astro.props;
-const onHomePage = path === 'home';
+const { current = '', page } = Astro.props;
+
+const isCurrentPage = current === page || (page == 'home' && current === '');
 ---
 
-<a
-  href={onHomePage ? '/' : `/${path}`}
-  class='px-2 group transition duration-300 min-w-16 text-center items-center no-underline'
->
-  {path}
-  <span
-    class={current === path || (onHomePage && current === '')
-      ? 'block max-w-full h-0.5 bg-[color:var(--primary-color)]'
-      : 'block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[color:var(--primary-color)]'}
-  ></span>
-</a>
+{
+  isCurrentPage ? (
+    <a class='px-2 group transition duration-300 min-w-16 text-center items-center no-underline cursor-pointer'>
+      {page}
+      <span class='block max-w-full h-0.5 bg-[color:var(--primary-color)]' />
+    </a>
+  ) : (
+    <a
+      href={page == 'home' ? '/' : `/${page}`}
+      class='px-2 group transition duration-300 min-w-16 text-center items-center no-underline'
+    >
+      {page}
+      <span class='block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[color:var(--primary-color)]' />
+    </a>
+  )
+}
