@@ -1,14 +1,13 @@
 ---
 import NavLink from './NavLink.astro';
 import Theme from './Theme.tsx';
-const { current = '' } = Astro.props;
 ---
 
 <header class='flex px-2 py-3 sm:p-3 w-full' id='page-header'>
   <nav class='w-full flex justify-between'>
     <div class='flex items-baseline self-start'>
-      <NavLink page='home' current={current} />
-      <NavLink page='posts' current={current} />
+      <NavLink page='home' />
+      <NavLink page='posts' />
     </div>
     <Theme client:load />
   </nav>

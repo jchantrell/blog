@@ -1,22 +1,27 @@
 ---
-const { current = '', page } = Astro.props;
+const { page } = Astro.props;
 
-const isCurrentPage = current === page || (page == 'home' && current === '');
+const currentPath = Astro.url.pathname;
+const isHome = page == 'home' && currentPath === '/';
+const isCurrentPage = currentPath === `/${page}` || isHome;
+const isOnRoute = currentPath.split('/')[1] == page;
 ---
 
 {
-  isCurrentPage ? (
-    <a class='px-2 group transition duration-300 min-w-16 text-center items-center no-underline cursor-pointer'>
-      {page}
-      <span class='block max-w-full h-0.5 bg-[color:var(--primary-color)]' />
-    </a>
-  ) : (
+  (
     <a
-      href={page == 'home' ? '/' : `/${page}`}
+      href={page === 'home' ? '/' : `/${page}`}
+      onclick={isCurrentPage ? 'return false' : 'return true'}
       class='px-2 group transition duration-300 min-w-16 text-center items-center no-underline'
     >
       {page}
-      <span class='block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[color:var(--primary-color)]' />
+      <span
+        class={
+          isOnRoute || isHome
+            ? 'block max-w-full h-0.5 bg-[color:var(--primary-color)]'
+            : 'block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[color:var(--primary-color)]'
+        }
+      />
     </a>
   )
 }

@@ -7,9 +7,8 @@ export interface Props {
   title: string;
   description: string;
   permalink: string;
-  current?: string;
 }
-const { title, description, permalink, current } = Astro.props;
+const { title, description, permalink } = Astro.props;
 ---
 
 <html lang='en' class='h-full'>
@@ -17,7 +16,7 @@ const { title, description, permalink, current } = Astro.props;
     <BaseHead title={`jchantrell | ${title}`} description={description} permalink={permalink} />
   </head>
   <body class='min-h-screen h-full flex flex-col'>
-    <Header current={current} />
+    <Header />
     <main class='size-full py-4 px-8 min-h-min'>
       <slot />
     </main>
