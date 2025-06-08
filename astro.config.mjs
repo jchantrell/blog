@@ -3,15 +3,15 @@ import mdx from '@astrojs/mdx';
 import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
 import rehypeExternalLinks from 'rehype-external-links';
-import tailwind from '@astrojs/tailwind';
 import solidJs from '@astrojs/solid-js';
+import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel/serverless';
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://jchantrell.dev',
-  integrations: [mdx(), tailwind(), solidJs()],
+  integrations: [mdx(), solidJs()],
   prefetch: true,
+
   markdown: {
     shikiConfig: {
       wrap: true,
@@ -27,6 +27,11 @@ export default defineConfig({
       ],
     ],
   },
+
   output: 'server',
   adapter: vercel(),
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
