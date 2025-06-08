@@ -16,17 +16,30 @@ const mappedPosts = posts
   .map((post) => ({
     title: post.data.title,
     description: post.data.description,
-    image: post.data.image.src,
     tags: post.data.tags.split(',').map((tag: string) => tag.trim()),
     publishDate: post.data.publishDate,
     readingTime: readingTime(post.body).text,
     slug: post.slug || '',
   }))
-  .sort((a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf());
+  .sort((a, b) => {
+    const aDate = new Date(a.publishDate).valueOf();
+    const bDate = new Date(b.publishDate).valueOf();
+    if (aDate == bDate) {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    } else bDate - aDate;
+  });
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current='posts'>
-  <div class='container mx-2/4'>
-    <Posts posts={mappedPosts} query={query} tags={tags} client:load } />
+  <div class='w-full flex justify-center'>
+    <div class='max-w-xl w-full'>
+      <Posts posts={mappedPosts} query={query} tags={tags} client:load />
+    </div>
   </div>
 </BaseLayout>

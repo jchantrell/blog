@@ -6,9 +6,7 @@ type Post = {
   title: string;
   description: string;
   tags: string[];
-  image: string;
   publishDate: string;
-  readingTime: string;
   slug: string;
 };
 
@@ -22,7 +20,11 @@ enum Operator {
   Or = ' | ',
 }
 
-export function Search(props: { posts: Post[]; query: string; tags: string[] }) {
+export function Search(props: {
+  posts: Post[];
+  query: string;
+  tags: string[];
+}) {
   const [searchTerm, setSearchTerm] = createSignal<string>(props.query);
   const [tagFilter, setTagFilter] = createSignal<string[]>(props.tags);
   const [store, setStore] = createStore<{
@@ -153,7 +155,7 @@ export function Search(props: { posts: Post[]; query: string; tags: string[] }) 
         </For>
       </div>
 
-      <div class='mt-6'>
+      <div class='mt-4 flex flex-col items-center'>
         <For each={store.posts}>
           {({ item }) => {
             return (
@@ -169,22 +171,15 @@ export function Search(props: { posts: Post[]; query: string; tags: string[] }) 
 }
 
 function Post(props: { post: Post }) {
-  const { title, description, image, publishDate, slug, readingTime } = props.post;
+  const { title, description, publishDate, slug } = props.post;
   return (
-    <a href={`posts/${slug}`}>
-      <div class='flex bg-[color:var(--foreground)] rounded-md p-2 mb-4'>
-        <figure class='bg-black hidden m-1 sm:flex flex-[0_0_100px] items-center justify-center rounded-md'>
-          <img class='max-w-full' src={image} />
-        </figure>
-        <div class='m-2'>
-          <h3 class='font-normal'>{title}</h3>
-          <p class='text-sm text-[color:var(--text-secondary)]'>{description}</p>
-          <div>
-            <span class='text-left mr-4 text-[color:var(--text-secondary)] text-xs'>
-              {publishDate} — {readingTime}
-            </span>
-          </div>
+    <a href={`posts/${slug}`} class='w-full flex rounded-md px-2 mb-4 bg-[color:var(--primary)]'>
+      <div class='mx-2 w-md'>
+        <div class='flex items-center'>
+          <span class='text-left mr-4 text-[color:var(--text-secondary)] text-xs mr-8'>{publishDate} </span>
+          <div class='font-normal underline'>{title}</div>
         </div>
+        <span class='text-sm text-[color:var(--text-secondary)]'>{description}</span>
       </div>
     </a>
   );

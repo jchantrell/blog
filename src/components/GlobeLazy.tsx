@@ -1,15 +1,9 @@
-import { Suspense, lazy } from 'solid-js';
+import { lazy } from 'solid-js';
 
-const Globe = lazy(async () => {
-  return import('./Globe');
-});
+const Globe = lazy(async () => import('./Globe'));
 
 function GlobeLazy() {
-  return (
-    <Suspense>
-      <Globe />
-    </Suspense>
-  );
+  return <Globe />;
 }
 
 export default GlobeLazy;

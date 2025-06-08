@@ -26,10 +26,10 @@ const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/pos
 
 <BaseLayout title={title} description={description} permalink={permalink} current='posts'>
   <header class='text-center mb-2 uppercase font-bold min-w-24 text-[color:var(--text-secondary)]'>
-    <h1 class='mb-2'>{title}</h1>
-    <p class='text-[color:var(--text-secondary)] m-0'>
+    <h1>{title}</h1>
+    <span class='text-[color:var(--text-secondary)] m-0'>
       {publishDate} - {readingTime(post.body).text}
-    </p>
+    </span>
     <div class='mb-2'>
       {
         data.tags
@@ -41,13 +41,15 @@ const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/pos
     </div>
     <hr class='min-w-24' />
   </header>
-  <div class='container'>
-    <blockquote class='text-sm'>
-      This article may change over time due to feedback, corrections and the likes. If something you were relying on is
-      missing, the full version history is available <a href={githubLink} target='_blank' class='underline'>here</a>.
-    </blockquote>
-    <article class='content'>
-      <Content />
-    </article>
+  <div class='w-full flex justify-center'>
+    <div class='max-w-4xl w-full'>
+      <blockquote class='text-sm'>
+        This article may change over time. If something you were relying on is missing, the full version history is
+        available <a href={githubLink} target='_blank' class='underline'>here</a>.
+      </blockquote>
+      <article class='content'>
+        <Content />
+      </article>
+    </div>
   </div>
 </BaseLayout>
