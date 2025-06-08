@@ -20,7 +20,6 @@ export function applyAnchorHeadings() {
   [...anchorHeadings]
     .filter((heading: Element) => heading.id !== 'table-of-contents' && heading.id !== 'post-title')
     .forEach((heading) => {
-      console.log(heading);
       const anchor = document.createElement('a');
       anchor.className = 'group relative cursor-pointer';
       anchor.href = `#${heading.id}`;
