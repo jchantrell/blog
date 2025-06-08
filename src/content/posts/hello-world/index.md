@@ -2,9 +2,7 @@
 title: Hello World
 publishDate: 25 Feb 2024
 description: Hi!
-image: ./astro-logo.svg
-tags: web, astro, three.js, solidjs
-slug: 'hello-world'
+tags: web, astro, frameworks
 ---
 
 # <a name="Blockquotes"></a>Blockquotes
@@ -23,7 +21,6 @@ Ipsum excepteur cupidatat sunt minim ad eiusmod tempor sit.
 
 Adipisicing voluptate ipsum culpa voluptate id aute laboris labore esse fugiat veniam ullamco occaecat do ut. Tempor et esse reprehenderit veniam proident ipsum irure sit ullamco et labore ea excepteur nulla labore ut. Ex aute minim quis tempor in eu id id irure ea nostrud dolor esse.
 
-[[Top]](#top)
 
 # <a name="Lists"></a>Lists
 
@@ -51,7 +48,6 @@ Adipisicing voluptate ipsum culpa voluptate id aute laboris labore esse fugiat v
 - Ut aute ipsum occaecat nisi culpa Lorem id occaecat cupidatat id id magna laboris ad duis. Fugiat cillum dolore veniam nostrud proident sint consectetur eiusmod irure adipisicing.
 - Passionfruit
 
-[[Top]](#top)
 
 # <a name="Horizontal"></a>Horizontal rule
 
@@ -61,7 +57,6 @@ In dolore velit aliquip labore mollit minim tempor veniam eu veniam ad in sint a
 
 In laboris eiusmod reprehenderit aliquip sit proident occaecat. Non sit labore anim elit veniam Lorem minim commodo eiusmod irure do minim nisi. Dolor amet cillum excepteur consequat sint non sint.
 
-[[Top]](#top)
 
 # <a name="Table"></a>Table
 
@@ -77,7 +72,6 @@ Duis sunt ut pariatur reprehenderit mollit mollit magna dolore in pariatur nulla
 
 Minim id consequat adipisicing cupidatat laborum culpa veniam non consectetur et duis pariatur reprehenderit eu ex consectetur. Sunt nisi qui eiusmod ut cillum laborum Lorem officia aliquip laboris ullamco nostrud laboris non irure laboris. Cillum dolore labore Lorem deserunt mollit voluptate esse incididunt ex dolor.
 
-[[Top]](#top)
 
 # <a name="Code"></a>Code
 
@@ -139,7 +133,6 @@ async function query(sql: string) {
 }
 ```
 
-[[Top]](#top)
 
 # <a name="Inline"></a>Inline elements
 
@@ -149,6 +142,5 @@ _Proident sit veniam in est proident officia adipisicing_ ea tempor cillum non c
 
 Incididunt in culpa cupidatat mollit cillum qui proident sit. In cillum aliquip incididunt voluptate magna amet cupidatat cillum pariatur sint aliqua est _enim **anim** voluptate_. Magna aliquip proident incididunt id duis pariatur eiusmod incididunt commodo culpa dolore sit. Culpa do nostrud elit ad exercitation anim pariatur non minim nisi **adipisicing sunt _officia_**. Do deserunt magna mollit Lorem commodo ipsum do cupidatat mollit enim ut elit veniam ea voluptate. Sint ea anim ipsum ad commodo cupidatat do **exercitation** incididunt et minim ad labore sunt. Minim deserunt labore laboris velit nulla incididunt ipsum nulla.
 
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/PCp2iXA1uLE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Reprehenderit non eu quis in ad elit esse qui aute id [incididunt](#) dolore cillum. Esse laboris consequat dolor anim exercitation tempor aliqua deserunt velit magna laboris. Culpa culpa minim duis amet mollit do quis amet commodo nulla irure.

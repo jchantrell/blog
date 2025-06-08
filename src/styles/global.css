@@ -1,3 +1,37 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-serif: 'Inter', system-ui, sans-serif;
+  --font-code: 'Fira Mono', Monaco, Consolas, 'Ubuntu Mono', monospace;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/FiraMono-Regular.ttf') format('truetype');
+}
+
+@supports (font-variation-settings: normal) {
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-named-instance: 'Regular';
+  }
+  @font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+    font-named-instance: 'Italic';
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

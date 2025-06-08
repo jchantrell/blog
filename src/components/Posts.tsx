@@ -147,24 +147,13 @@ export function Search(props: {
         placeholder={`${props.posts[Math.floor(Math.random() * props.posts.length)].title}...`}
       />
 
-      <div class='mt-4 flex flex-wrap gap-3'>
-        <For each={store.tags}>
-          {(tag) => {
-            return <Tag tag={tag} setStore={setStore} />;
-          }}
-        </For>
-      </div>
-
-      <div class='mt-4 flex flex-col items-center'>
-        <For each={store.posts}>
-          {({ item }) => {
-            return (
-              <>
-                <Post post={item} />
-              </>
-            );
-          }}
-        </For>
+      <div class='flex justify-between mt-4'>
+        <div class='w-full flex flex-col items-center flex-grow'>
+          <For each={store.posts}>{({ item }) => <Post post={item} />}</For>
+        </div>
+        <aside class='flex-wrap justify-end h-full basis-64 gap-2 hidden sm:flex'>
+          <For each={store.tags}>{(tag) => <Tag tag={tag} setStore={setStore} />}</For>
+        </aside>
       </div>
     </>
   );
@@ -173,15 +162,17 @@ export function Search(props: {
 function Post(props: { post: Post }) {
   const { title, description, publishDate, slug } = props.post;
   return (
-    <a href={`posts/${slug}`} class='w-full flex rounded-md px-2 mb-4 bg-[color:var(--primary)]'>
-      <div class='mx-2 w-md'>
+    <div class='w-full flex rounded-md px-2 mb-4 bg-[color:var(--primary)]'>
+      <div class='mx-2'>
         <div class='flex items-center'>
           <span class='text-left mr-4 text-[color:var(--text-secondary)] text-xs mr-8'>{publishDate} </span>
-          <div class='font-normal underline'>{title}</div>
+          <a href={`posts/${slug}`} class='font-normal underline'>
+            {title}
+          </a>
         </div>
         <span class='text-sm text-[color:var(--text-secondary)]'>{description}</span>
       </div>
-    </a>
+    </div>
   );
 }
 
