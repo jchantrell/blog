@@ -2,8 +2,8 @@
 export const prerender = true;
 
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
 import readingTime from 'reading-time';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -25,9 +25,16 @@ const githubLink = `https://github.com/jchantrell/blog/commits/main/src/data/pos
 ---
 
 <script>
-  import { applyAnchorHeadings, applyScrollToTop } from '../../utils';
-  applyScrollToTop();
-  applyAnchorHeadings();
+import { applyAnchorHeadings, applyScrollToTop } from '../../lib/utils';
+
+  function initializePage() {
+    applyScrollToTop();
+    applyAnchorHeadings();
+  }
+
+  initializePage();
+
+  document.addEventListener('astro:page-load', initializePage);
 </script>
 
 <BaseLayout title={title} description={description} permalink={permalink}>

@@ -2,17 +2,18 @@
 const { page } = Astro.props;
 
 const currentPath = Astro.url.pathname;
-const isHome = page == 'home' && currentPath === '/';
+const isHome = page === 'home' && currentPath === '/';
 const isCurrentPage = currentPath === `/${page}` || isHome;
-const isOnRoute = currentPath.split('/')[1] == page;
+const isOnRoute = currentPath.split('/')[1] === page;
 ---
 
 {
   (
-    <a
+  <a
       href={page === 'home' ? '/' : `/${page}`}
       onclick={isCurrentPage ? 'return false' : 'return true'}
       class='px-2 group transition duration-300 min-w-16 text-center items-center no-underline'
+      data-astro-prefetch
     >
       {page}
       <span

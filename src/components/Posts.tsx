@@ -1,5 +1,5 @@
 import Fuse, { type FuseResult } from 'fuse.js';
-import { createSignal, onMount, createEffect, on, For } from 'solid-js';
+import { createEffect, createSignal, For, on, onMount } from 'solid-js';
 import { createStore, type SetStoreFunction } from 'solid-js/store';
 
 type Post = {
@@ -20,11 +20,7 @@ enum Operator {
   Or = ' | ',
 }
 
-export function Search(props: {
-  posts: Post[];
-  query: string;
-  tags: string[];
-}) {
+export function Search(props: { posts: Post[]; query: string; tags: string[] }) {
   const [searchTerm, setSearchTerm] = createSignal<string>(props.query);
   const [tagFilter, setTagFilter] = createSignal<string[]>(props.tags);
   const [store, setStore] = createStore<{
@@ -48,7 +44,7 @@ export function Search(props: {
 
     const tagArgs = [{ $path: ['tags'], $val: filter }];
 
-    const args: { [key: string]: any } = {};
+    const args: { [key: string]: string | object } = {};
 
     // if no search text or tag filter present -> inverse exact match to return all docs
     // fuse doesnt provide a native solution for this: https://github.com/krisk/Fuse/issues/229
@@ -88,7 +84,7 @@ export function Search(props: {
       params.append('tags', tag);
     }
 
-    let replacement = `${url.pathname}${params.size ? '?' : ''}${params}`;
+    const replacement = `${url.pathname}${params.size ? '?' : ''}${params}`;
     window.history.replaceState({}, '', replacement);
   }
 
@@ -187,7 +183,8 @@ function Tag(props: { tag: Tag; setStore: SetStoreFunction<{ tags: Tag[] }> }) {
   }
 
   return (
-    <div
+    <button
+      type='button'
       onClick={(e) => toggle(e.target.id)}
       id={props.tag.id}
       class={
@@ -197,7 +194,7 @@ function Tag(props: { tag: Tag; setStore: SetStoreFunction<{ tags: Tag[] }> }) {
       }
     >
       {props.tag.id.replace('-', ' ')}
-    </div>
+    </button>
   );
 }
 

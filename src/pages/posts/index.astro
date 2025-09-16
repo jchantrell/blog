@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Posts from '../../components/Posts.tsx';
 import { getCollection } from 'astro:content';
 import readingTime from 'reading-time';
+import Posts from '../../components/Posts.tsx';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Posts';
 const description = 'Latest articles.';
@@ -24,7 +24,7 @@ const mappedPosts = posts
   .sort((a, b) => {
     const aDate = new Date(a.publishDate).valueOf();
     const bDate = new Date(b.publishDate).valueOf();
-    if (aDate == bDate) {
+    if (aDate === bDate) {
       if (a.title < b.title) {
         return -1;
       }

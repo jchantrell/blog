@@ -1,6 +1,6 @@
 ---
+import Globe from '../components/GlobeLazy.tsx';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import GlobeLazy from '../components/GlobeLazy.tsx';
 
 const title = 'Home';
 const description = 'Ramblings about software.';
@@ -9,15 +9,15 @@ const permalink = Astro.site?.href as string;
 
 <BaseLayout title={title} description={description} permalink={permalink}>
   <div class='relative flex items-center size-full'>
-    <div id='globe' class='absolute h-full w-full inset-center z-0'>
-      <GlobeLazy transition:persist client:idle client:only='solidjs' />
+    <div id='globe' class='absolute size-full inset-center z-0'>
+      <Globe transition:persist client:only='solidjs' />
     </div>
-    <div class='w-full flex justify-center pointer-events-none'>
-      <div class='max-w-4xl text-center text-2xl z-1 w-full'>
+    <div class='w-full flex justify-center pointer-events-none relative z-10'>
+      <div class='max-w-4xl p-4 text-center text-2xl w-full select-none'>
         <p>Hi, I'm Joel. 👋</p>
         <p>
           I'm an engineer and tinkerer that's been inseparable from computers since I was a child. I work professionally
-          as a software engineer and do a lot of recreational programming in my spare time. I use this website to
+          as a software engineer and do a lot of recreational programming in my spare time. This website is used to
           document my thoughts, learnings and what I'm working on.
         </p>
         <p>If you would like to contact me, you can use the links below.</p>

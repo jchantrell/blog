@@ -5,7 +5,7 @@ import remarkSmartypants from 'remark-smartypants';
 import rehypeExternalLinks from 'rehype-external-links';
 import solidJs from '@astrojs/solid-js';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://jchantrell.dev',

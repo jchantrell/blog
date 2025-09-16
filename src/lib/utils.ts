@@ -35,9 +35,17 @@ export function applyAnchorHeadings() {
 }
 
 // https://github.com/itaydafna/itaydafna.dev/blob/main/src/utils/applyBlogScrollToTop.ts
+let scrollObserver: IntersectionObserver | null = null;
+
 export function applyScrollToTop() {
   const scrollBtn = document.getElementById('to-top-btn') as HTMLButtonElement;
   const targetHeader = document.getElementById('page-header') as HTMLDivElement;
+
+  if (!scrollBtn || !targetHeader) return;
+
+  if (scrollObserver) {
+    scrollObserver.disconnect();
+  }
 
   function callback(entries: IntersectionObserverEntry[]) {
     entries.forEach((entry) => {
@@ -49,6 +57,6 @@ export function applyScrollToTop() {
     document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  const observer = new IntersectionObserver(callback);
-  observer.observe(targetHeader);
+  scrollObserver = new IntersectionObserver(callback);
+  scrollObserver.observe(targetHeader);
 }
