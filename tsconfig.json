@@ -8,6 +8,8 @@
     "noEmit": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
+    "allowJs": true,
+    "esModuleInterop": true,
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"

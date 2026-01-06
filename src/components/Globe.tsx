@@ -4,7 +4,7 @@ import type { GeoJson } from '../lib/three';
 
 const loadThreeJS = async () => {
   const [Engine, geojsonResponse] = await Promise.all([
-    import('../lib/three').then((m) => m.default),
+    new Promise((resolve) => setTimeout(resolve, 500)).then(() => import('../lib/three').then((m) => m.default)),
     fetch('/world.json').then((response) => response.json() as unknown as GeoJson),
   ]);
   return { Engine, geojson: geojsonResponse };

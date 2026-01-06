@@ -10,7 +10,7 @@ import {
   Vector3,
   WebGLRenderer,
 } from 'three';
-import ThreeGlobe from 'three-globe';
+import ThreeGlobe from './three-globe.mjs';
 
 export type GeoJson = {
   type: string;
@@ -34,7 +34,7 @@ class Engine {
   private scene: Scene;
   private camera: PerspectiveCamera;
   private renderer: WebGLRenderer;
-  private globe: ThreeGlobe | undefined;
+  private globe: InstanceType<typeof ThreeGlobe> | undefined;
 
   active: boolean = false;
   height: number = window.innerHeight;

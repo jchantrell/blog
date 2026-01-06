@@ -13,16 +13,19 @@ function GlobeLazy() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => {
-              setShouldLoad(true);
-            }, 500);
+            setShouldLoad(true);
             observer.disconnect();
+
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.href = '/world.json';
+            document.head.appendChild(link);
           }
         });
       },
       {
-        rootMargin: '100px',
-        threshold: 0.1,
+        rootMargin: '200px',
+        threshold: 0.01,
       },
     );
     observer.observe(container);

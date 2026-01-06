@@ -1,11 +1,11 @@
-import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import solidJs from '@astrojs/solid-js';
+import vercel from '@astrojs/vercel';
+import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'astro/config';
+import rehypeExternalLinks from 'rehype-external-links';
 import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
-import rehypeExternalLinks from 'rehype-external-links';
-import solidJs from '@astrojs/solid-js';
-import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://jchantrell.dev',
@@ -28,10 +28,14 @@ export default defineConfig({
     ],
   },
 
-  output: 'server',
+  output: 'static',
   adapter: vercel(),
+  
 
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ['three']
+    }
   },
 });
