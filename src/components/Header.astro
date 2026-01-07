@@ -3,11 +3,12 @@ import NavLink from './NavLink.astro';
 import Theme from './Theme.tsx';
 ---
 
-<header class='flex px-2 py-3 sm:p-3 w-full' id='page-header'>
+<header class='flex px-2 py-3 sm:p-3 w-full sticky top-0 z-100 bg-[color:var(--background)]' id='page-header'>
   <nav class='w-full flex justify-between'>
     <div class='flex items-baseline self-start'>
       <NavLink page='home' />
       <NavLink page='posts' />
+      <NavLink page='projects' />
     </div>
     <Theme client:load />
   </nav>

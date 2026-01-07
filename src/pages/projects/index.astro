@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Project from '../../components/Project.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Projects';
+const description = 'Things that I work on.';
+const permalink = Astro.site?.href as string;
+
+const projects = await getCollection('projects');
+---
+
+<BaseLayout title={title} description={description} permalink={permalink}>
+  <div class="size-full flex justify-center">
+    <div class='flex flex-col w-full max-w-3xl'>
+      {projects.map((project) => <Project project={project} />)}
+    </div>
+  </div>
+</BaseLayout>

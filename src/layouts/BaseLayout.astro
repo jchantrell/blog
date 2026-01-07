@@ -15,9 +15,9 @@ const { title, description, permalink } = Astro.props;
   <head>
     <BaseHead title={`${title} • jchantrell`} description={description} permalink={permalink} />
   </head>
-  <body class='min-h-screen h-full flex flex-col'>
+  <body class='min-h-dvh h-full flex flex-col'>
     <Header />
-    <main class='flex-1 py-4 px-8 relative'>
+    <main class='flex-1 py-4 px-8 relative overflow-auto'>
       <slot />
     </main>
     <Footer />
