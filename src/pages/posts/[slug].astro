@@ -35,7 +35,10 @@ function initializePage() {
 
 initializePage();
 
-document.addEventListener('astro:page-load', initializePage);
+document.addEventListener('astro:page-load', () => {
+  console.log('page load');
+  initializePage();
+});
 </script>
 
 <BaseLayout title={title} description={description} permalink={permalink}>
@@ -105,7 +108,7 @@ document.addEventListener('astro:page-load', initializePage);
   </div>
   <button
     id="to-top-btn"
-    class="z-90 fixed bottom-8 right-4 flex h-6 w-6 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-[color:var(--muted)] text-3xl opacity-0 transition-all duration-300 hover:border-zinc-400 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:right-8 sm:h-8 sm:w-8 cursor-pointer"
+    class="z-90 fixed bottom-8 right-8 flex h-6 w-6 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-[color:var(--muted)] text-3xl opacity-0 transition-all duration-300 hover:border-zinc-400 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:h-8 sm:w-8 cursor-pointer"
     aria-label="Back to Top"
     data-show="false"
   >

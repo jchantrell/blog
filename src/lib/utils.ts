@@ -35,28 +35,35 @@ export function applyAnchorHeadings() {
 }
 
 // https://github.com/itaydafna/itaydafna.dev/blob/main/src/utils/applyBlogScrollToTop.ts
-let scrollObserver: IntersectionObserver | null = null;
+let cleanupScroll: (() => void) | null = null;
 
 export function applyScrollToTop() {
+  if (cleanupScroll) {
+    cleanupScroll();
+    cleanupScroll = null;
+  }
+
   const scrollBtn = document.getElementById('to-top-btn') as HTMLButtonElement;
-  const targetHeader = document.getElementById('page-header') as HTMLDivElement;
+  const sentinel = document.getElementById('scroll-sentinel') as HTMLDivElement;
 
-  if (!scrollBtn || !targetHeader) return;
+  if (!scrollBtn || !sentinel) return;
 
-  if (scrollObserver) {
-    scrollObserver.disconnect();
+  const scrollContainer = sentinel.parentElement;
+  if (!scrollContainer) return;
+
+  function onScroll() {
+    scrollBtn.dataset.show = (scrollContainer!.scrollTop > 100).toString();
   }
 
-  function callback(entries: IntersectionObserverEntry[]) {
-    entries.forEach((entry) => {
-      scrollBtn.dataset.show = (!entry.isIntersecting).toString();
-    });
+  function onClick() {
+    scrollContainer!.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  scrollBtn.addEventListener('click', () => {
-    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  scrollBtn.addEventListener('click', onClick);
+  scrollContainer.addEventListener('scroll', onScroll);
 
-  scrollObserver = new IntersectionObserver(callback);
-  scrollObserver.observe(targetHeader);
+  cleanupScroll = () => {
+    scrollBtn.removeEventListener('click', onClick);
+    scrollContainer.removeEventListener('scroll', onScroll);
+  };
 }
