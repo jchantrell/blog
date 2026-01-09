@@ -42,7 +42,7 @@
     "rules": { "a11y": { "noSvgWithoutTitle": { "level": "off" } } }
   },
   "files": {
-    "includes": ["**", "!dist", "!node_modules"]
+    "includes": ["**", "!dist", "!node_modules", "!.astro"]
   },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "overrides": [
