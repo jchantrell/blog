@@ -61,6 +61,30 @@
   --astro-code-token-string-expression: #31a383;
 }
 
+/* override to light mode for resume printing */
+@media print {
+  :root,
+  :root.dark {
+    --primary-color: #047857;
+    --background: #fff;
+    --foreground: #e1e1e1;
+    --muted: #cacac6;
+    --text-primary: #0c0a09;
+    --text-secondary: #44403c;
+    --text-muted: #57534e;
+    --astro-code-color-text: #0c0a09;
+    --astro-code-token-constant: #0c0a09;
+    --astro-code-token-string: #022c22;
+    --astro-code-token-comment: #57534e;
+    --astro-code-token-keyword: #047857;
+    --astro-code-token-string-expression: #047857;
+    --astro-code-token-function: #6b21a8;
+    --astro-code-token-parameter: #aa0000;
+    --astro-code-token-punctuation: #dd0000;
+    --astro-code-token-link: #ee0000;
+  }
+}
+
 @theme {
   --font-serif: "Inter", system-ui, sans-serif;
   --font-code: "Fira Mono", Monaco, Consolas, "Ubuntu Mono", monospace;
