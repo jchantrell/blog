@@ -1,4 +1,5 @@
 ---
+import '../../styles/main.css';
 import { getCollection } from 'astro:content';
 import readingTime from 'reading-time';
 import Posts from '../../components/Posts.tsx';
@@ -7,8 +8,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const title = 'Posts';
 const description = 'Latest articles.';
 const permalink = `${Astro?.site?.href}posts`;
-const query = Astro.url.searchParams.get('q')! || '';
-const tags = Astro.url.searchParams.getAll('tags')! || [];
+const query = Astro.url.searchParams.get('q') || '';
+const tags = Astro.url.searchParams.getAll('tags') || [];
 
 const posts = await getCollection('posts');
 
@@ -38,8 +39,8 @@ const mappedPosts = posts
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink}>
-  <div class='w-full flex justify-center'>
-    <div class='max-w-3xl w-full'>
+  <div class="w-full flex justify-center">
+    <div class="max-w-3xl w-full">
       <Posts posts={mappedPosts} query={query} tags={tags} client:load />
     </div>
   </div>

@@ -1,5 +1,5 @@
 ---
-name: My Website (Yes, this one 😄)
+name: My Site (Yes, this one 😄)
 link: https://github.com/jchantrell/blog
 tags: Astro, SolidJS, ThreeJS, 3D, Visualisations
 ---

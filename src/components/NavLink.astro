@@ -7,8 +7,7 @@ const isCurrentPage = currentPath === `/${page}` || isHome;
 const isOnRoute = currentPath.split('/')[1] === page;
 ---
 
-{
-  (
+{(
   <a
       href={page === 'home' ? '/' : `/${page}`}
       onclick={isCurrentPage ? 'return false' : 'return true'}
@@ -24,5 +23,4 @@ const isOnRoute = currentPath.split('/')[1] === page;
         }
       />
     </a>
-  )
-}
+  )}

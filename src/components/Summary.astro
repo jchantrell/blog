@@ -1,0 +1,12 @@
+---
+import { PERSONAL_DATA } from '../content/data';
+
+const { summary } = PERSONAL_DATA;
+---
+
+<section class="flex min-h-0 flex-col gap-y-1">
+  <h2 class="text-xl font-bold" id="about-section">Summary</h2>
+  <div class="text-pretty font-mono text-sm text-text-secondary/80 print:text-[12px]" aria-labelledby="about-section">
+    {summary}
+  </div>
+</section>

@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+canvas {
+  z-index: 1;
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+article {
+  h1 {
+    font-size: 1.4em;
+    margin: 0 0 1em 0;
+  }
+
+  h2 {
+    font-size: 1.3em;
+    margin: 0 0 0.9em 0;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    margin: 0 0 0.8em 0;
+  }
+
+  h4 {
+    font-size: 1.3em;
+  }
+
+  h5 {
+    font-size: 1.2em;
+  }
+
+  h6 {
+    font-size: 1.1em;
+  }
+}
+
+ol,
+ul {
+  padding-left: 2rem;
+  -webkit-padding-start: 5%;
+  -webkit-padding-end: 5%;
+}
+
+li {
+  list-style-type: disc;
+}
+
+a {
+  color: inherit;
+  transition: color linear 0.15s;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+p a {
+  text-decoration: none;
+  box-shadow: inset 0 -0.12em 0 var(--primary-color);
+  -webkit-transition:
+    box-shadow 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+  transition:
+    box-shadow 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+p a:hover {
+  box-shadow: inset 0 -1.5em 0 var(--primary-color);
+  color: #fff;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  padding: 0;
+  border: 0;
+  height: 1px;
+  background: var(--text-secondary);
+}
+
+code {
+  padding: 0.2em 0.4em;
+  font-size: 85%;
+  white-space: break-spaces;
+  border-radius: 4px;
+  background: var(--muted);
+  font-feature-settings: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+pre {
+  background: transparent !important;
+  margin: 1.2em 0 !important;
+  padding: 1.2em;
+}
+
+pre code {
+  font-family: var(--font-code);
+  background: transparent !important;
+  padding: 0;
+}
+
+blockquote {
+  border-left: 4px solid #cccccc;
+  font-size: 1em;
+  font-style: italic;
+  margin: 2rem 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: var(--text-secondary);
+}
+
+blockquote p {
+  padding-bottom: 6px;
+}
+
+blockquote footer {
+  font-size: 1.1rem;
+  text-align: right;
+}
+
+figure {
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  margin: 0 0 3em 0;
+}
+
+table {
+  border-collapse: collapse;
+  word-break: break-word;
+  font-size: 1.125em;
+  margin: 2em 0;
+}
+
+th {
+  border-bottom: 2px solid #cccccc;
+  padding: 0.2em 0.6em;
+}
+
+td {
+  padding: 0.2em 0.6em;
+}
+
+ul,
+ol {
+  margin-bottom: 1em;
+}
+
+li {
+  ul,
+  ol {
+    margin-bottom: 0;
+  }
+}
+
+p {
+  margin: 0.8em 0;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  p {
+    margin: 1em 0;
+  }
+}

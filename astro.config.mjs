@@ -30,12 +30,11 @@ export default defineConfig({
 
   output: 'static',
   adapter: vercel(),
-  
 
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      include: ['three']
-    }
+      include: ['three'],
+    },
   },
 });

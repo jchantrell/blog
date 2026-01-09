@@ -1,0 +1,23 @@
+---
+import type { Certification } from '../content/data';
+
+interface Props extends Certification {}
+
+const { company, certificates } = Astro.props;
+---
+
+<article role="article">
+  <div class="rounded-lg bg-card text-text-secondary">
+    {certificates.map(({name, date})=>
+             <div class="flex items-center gap-1">
+                  <h4 class="font-mono text-sm font-semibold leading-none flex flex-col space-y-1.5 print:text-[12px]">
+                      {name}
+                  </h4>
+            <div class="text-sm font-mono tabular-nums text-text-primary/75"
+                aria-label=`Period: ${date}`>
+                ({date})
+                  </div>
+             </div>
+        )}
+  </div>
+</article>

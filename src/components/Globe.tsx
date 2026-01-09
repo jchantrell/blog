@@ -29,7 +29,7 @@ function GlobeAsync() {
       const curtain = document.getElementById('curtain') as HTMLElement;
       await three.init(
         resources.geojson,
-        document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light',
+        document.documentElement.classList.contains('dark') ? 'dark' : 'light',
         curtain,
       );
     }
@@ -47,7 +47,7 @@ function GlobeAsync() {
       const three = engine();
       if (three) {
         mutations.forEach(({ target }) => {
-          three.setTheme(target instanceof HTMLElement && target.classList.contains('theme-dark') ? 'dark' : 'light');
+          three.setTheme(target instanceof HTMLElement && target.classList.contains('dark') ? 'dark' : 'light');
         });
       }
     });

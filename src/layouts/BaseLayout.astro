@@ -11,13 +11,13 @@ export interface Props {
 const { title, description, permalink } = Astro.props;
 ---
 
-<html lang='en' class='h-full'>
+<html lang="en" class="h-full scroll-smooth print:h-auto">
   <head>
-    <BaseHead title={`${title} • jchantrell`} description={description} permalink={permalink} />
+    <BaseHead title={`jchantrell | ${title}`} description={description} permalink={permalink} />
   </head>
-  <body class='min-h-dvh h-full flex flex-col'>
+  <body class="min-h-dvh h-full flex flex-col print:h-auto">
     <Header />
-    <main class='flex-1 py-4 px-8 relative overflow-auto'>
+    <main class="flex-1 py-4 px-8 relative overflow-auto print:overflow-visible">
       <slot />
     </main>
     <Footer />

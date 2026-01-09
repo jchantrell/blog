@@ -1,0 +1,15 @@
+---
+import { PERSONAL_DATA } from '../content/data';
+import CertificationItem from './CertificationItem.astro';
+
+const { certifications } = PERSONAL_DATA;
+---
+
+<section class="flex min-h-0 flex-col gap-y-1">
+  <h2 class="text-xl font-bold" id="certification-section">Certifications</h2>
+  <div class="space-y-4" role="feed" aria-labelledby="certification-section">
+    {certifications.map((entry) => (
+                <CertificationItem {...entry}/>
+        ))}
+  </div>
+</section>

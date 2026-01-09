@@ -16,9 +16,9 @@ export function Theme() {
   createEffect(
     on(theme, () => {
       if (root && theme() === 'light') {
-        root.classList.remove('theme-dark');
+        root.classList.remove('dark');
       } else if (root && theme() === 'dark') {
-        root.classList.add('theme-dark');
+        root.classList.add('dark');
       }
       localStorage.setItem('theme', theme());
     }),

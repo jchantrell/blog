@@ -1,19 +1,24 @@
 ---
+import '../styles/main.css';
 import Globe from '../components/GlobeLazy.tsx';
+import { PERSONAL_DATA } from '../content/data';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Home';
 const description = 'Ramblings about software.';
 const permalink = Astro.site?.href as string;
+const {
+  contact: { email, social },
+} = PERSONAL_DATA;
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink}>
-  <div class='relative flex items-center size-full'>
-    <div id='globe' class='absolute size-full inset-center z-0'>
-      <Globe transition:persist client:only='solidjs' />
+  <div class="relative flex items-center size-full">
+    <div id="globe" class="absolute size-full inset-center z-0">
+      <Globe transition:persist client:only="solidjs" />
     </div>
-    <div class='w-full flex justify-center pointer-events-none relative z-10'>
-      <div class='max-w-4xl p-4 text-center text-2xl w-full select-none'>
+    <div class="w-full flex justify-center pointer-events-none relative z-10">
+      <div class="max-w-4xl p-4 text-center text-2xl w-full select-none">
         <p>Hi, I'm Joel. 👋</p>
         <p>
           I'm an engineer and tinkerer that's been inseparable from computers since I was a child. I work professionally
@@ -21,12 +26,9 @@ const permalink = Astro.site?.href as string;
           document my thoughts, learnings and what I'm working on.
         </p>
         <p>If you would like to contact me, you can use the links below.</p>
-        <p>
-          <a class='pointer-events-auto' href='https://github.com/jchantrell' target='_blank'>Github</a> · <a
-            class='pointer-events-auto'
-            href='https://www.linkedin.com/in/jchantrell/'
-            target='_blank'>LinkedIn</a
-          > · <a class='pointer-events-auto' href='mailto:me@jchantrell.dev' target='_blank'>Mail</a>
+        <p class="pointer-events-auto">
+          {social.map(({name, url}) => <><a href={url} target='_blank'>{name}</a> · </> )}
+          <a href="/resume">Resume</a> ·<a href={`mailto:${email}`} target="_blank">Mail</a>
         </p>
       </div>
     </div>
