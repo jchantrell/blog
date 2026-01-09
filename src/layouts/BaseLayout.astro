@@ -18,6 +18,11 @@ const { title, description, permalink } = Astro.props;
   <body class="min-h-dvh h-full flex flex-col print:h-auto">
     <Header />
     <main class="flex-1 py-4 px-8 relative overflow-auto print:overflow-visible">
+      <div
+        id="scroll-sentinel"
+        class="absolute top-0 left-0 w-full h-px pointer-events-none opacity-0"
+        aria-hidden="true"
+      ></div>
       <slot />
     </main>
     <Footer />

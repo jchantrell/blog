@@ -8,7 +8,7 @@ It has a landing page with contact details, a blog, a list of personal projects 
 
 Of course. The project and all of its dependencies are either MIT or Apache-2.0 licensed, so feel free to fork and do as you wish. Just remember to update your details in `src/content/data.ts` so you don't end up impersonating me. 🙈
 
-## What commands do I need?
+## Commands
 
 ```bash
 pnpm dev # run locally
