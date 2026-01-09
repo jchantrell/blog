@@ -23,7 +23,8 @@ export function applyAnchorHeadings() {
       const anchor = document.createElement('a');
       anchor.className = 'group relative cursor-pointer';
       anchor.href = `#${heading.id}`;
-      heading.parentNode!.insertBefore(anchor, heading);
+      if (!heading.parentNode) return;
+      heading.parentNode.insertBefore(anchor, heading);
 
       const linkIconWrapper = document.createElement('div');
       linkIconWrapper.className = 'hidden group-hover:block';
@@ -52,11 +53,13 @@ export function applyScrollToTop() {
   if (!scrollContainer) return;
 
   function onScroll() {
-    scrollBtn.dataset.show = (scrollContainer!.scrollTop > 100).toString();
+    if (!scrollContainer) return;
+    scrollBtn.dataset.show = (scrollContainer.scrollTop > 100).toString();
   }
 
   function onClick() {
-    scrollContainer!.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!scrollContainer) return;
+    scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   scrollBtn.addEventListener('click', onClick);

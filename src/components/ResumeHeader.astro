@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import avatarImage from '../assets/avatar.jpeg';
 import { PERSONAL_DATA } from '../content/data';
 import LinkButton from './common/LinkButton.astro';
 import Email from './icons/Email.astro';
@@ -62,6 +61,12 @@ const { name, about, personalWebsiteUrl, contact, location, locationLink } = PER
     </div>
   </div>
   <span class="relative flex shrink-0 overflow-hidden rounded-xl size-28" aria-hidden="true">
-    <Image class="aspect-square h-full w-full" alt={`${name}'s profile picture`} src={avatarImage} />
+    <Image
+      class="aspect-square h-full w-full"
+      alt={`${name}'s profile picture`}
+      src={"/avatar.jpeg"}
+      width="200"
+      height="200"
+    />
   </span>
 </header>

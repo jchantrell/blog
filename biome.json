@@ -39,10 +39,15 @@
   },
   "linter": {
     "enabled": true,
-    "rules": { "a11y": { "noSvgWithoutTitle": { "level": "off" } } }
+    "rules": {
+      "a11y": { "noSvgWithoutTitle": { "level": "off" } },
+      "complexity": {
+        "noImportantStyles": "off"
+      }
+    }
   },
   "files": {
-    "includes": ["**", "!dist", "!node_modules", "!.astro"]
+    "includes": ["**", "!dist", "!node_modules", "!.astro", "!src/lib/three-globe.mjs"]
   },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "overrides": [

@@ -49,19 +49,19 @@ export function Search(props: { posts: Post[]; query: string; tags: string[] }) 
     // if no search text or tag filter present -> inverse exact match to return all docs
     // fuse doesnt provide a native solution for this: https://github.com/krisk/Fuse/issues/229
     if (!query.length && !filter.length) {
-      args['title'] = '!1234567890';
+      args.title = '!1234567890';
     }
     // if no tag filter is present -> OR search by text
     if (query.length && !filter.length) {
-      args['$or'] = textArgs;
+      args.$or = textArgs;
     }
     // if no search text present -> OR filter by tags
     if (!query.length && filter.length) {
-      args['$or'] = tagArgs;
+      args.$or = tagArgs;
     }
     // if text and tags are present -> OR search by text + AND filter by tags
     if (query.length && filter.length) {
-      args['$and'] = [{ $or: textArgs }, { $and: tagArgs }];
+      args.$and = [{ $or: textArgs }, { $and: tagArgs }];
     }
 
     setStore('posts', fuse?.search(args) as FuseResult<Post>[]);
@@ -161,7 +161,7 @@ function Post(props: { post: Post }) {
     <div class='w-full flex rounded-md px-2 mb-4 bg-[color:var(--primary)]'>
       <div class='mx-2'>
         <div class='flex items-center'>
-          <span class='text-left mr-4 text-[color:var(--text-secondary)] text-xs mr-8'>{publishDate} </span>
+          <span class='text-left text-[color:var(--text-secondary)] text-xs mr-8'>{publishDate} </span>
           <a href={`posts/${slug}`} class='font-normal underline'>
             {title}
           </a>
