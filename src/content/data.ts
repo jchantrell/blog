@@ -87,12 +87,12 @@ export const PERSONAL_DATA: PersonalInformation = {
         },
       ],
       description:
-        'Architect, develop and maintain high-quality software, integration workflows and cloud infrastucture.',
+        'Architect, develop and maintain high-quality software, integration workflows and cloud infrastructure.',
       achievements: [
         "Engineered scalable event-driven architecture for fault-tolerant, real-time processing and managing platform's complex interservice data needs.",
         'Architected data models and ETL pipelines for graph (Neptune), SQL (RDS/Aurora), document (DynamoDB, OpenSearch), timeseries (IoT Core) and semi-structured (Snowflake, S3) data stores.',
         'Built CI/CD pipelines and workflows to automate and standardise PR reviews, testing, stage-based deployments and versioning utilising GitHub Actions and AWS CodePipeline.',
-        'Developed secure and performant GraphQL and RESTful APIs utilising AWS AppSync, API Gateway using documented OpenAPI standards.',
+        'Developed secure, performant and documented APIs utilising GraphQL, REST and OpenAPI standards.',
         'Optimised fullstack applications for responsiveness, initial load, caching and cost.',
         'Implemented infrastructure as code utilising AWS CDK, SAM and CloudFormation.',
         'Securely managed access and third party system integrations using OIDC, OAuth and RBAC.',
@@ -112,7 +112,7 @@ export const PERSONAL_DATA: PersonalInformation = {
       description: 'In-house ERP/CRM development and ad-hoc consulting and support for customers.',
       achievements: [
         "Setup and maintained business's Odoo ERP/CRM infrastructure.",
-        "Integrated businesses's Xero accounting into Odoo ERP/CRM.",
+        "Integrated business's Xero accounting into Odoo ERP/CRM.",
         'Developed Azure Logic App for handling API requests and syncing Outlook Calendar into custom application.',
       ],
       badges: [],
