@@ -110,6 +110,8 @@ class Engine {
       .hexPolygonMargin(0.35)
       .hexPolygonUseDots(false);
 
+    this.globe.scale.set(-1, 1, 1);
+
     this.scene.add(this.globe);
     this.active = true;
     this.setTheme(theme);
@@ -139,7 +141,7 @@ class Engine {
   }
 
   easeIn(curtainElement: HTMLElement) {
-    curtainElement.classList.add('transition-opacity', 'ease-in', 'duration-1000', 'opacity-0');
+    curtainElement.classList.add('transition-opacity', 'ease-in', 'duration-1500', 'opacity-0');
   }
 
   canvas() {
