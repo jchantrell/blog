@@ -47,7 +47,7 @@
     }
   },
   "files": {
-    "includes": ["**", "!dist", "!node_modules", "!.astro", "!src/lib/three-globe.mjs"]
+    "includes": ["**", "!dist", "!node_modules", "!.astro", "!.vercel", "!src/lib/three-globe.mjs"]
   },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "overrides": [

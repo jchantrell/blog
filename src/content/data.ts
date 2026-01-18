@@ -8,7 +8,7 @@ export interface PersonalInformation {
   personalWebsiteUrl: string;
   contact: Contact;
   work: Work[];
-  certifications: Certification[];
+  certifications: Certificate[];
   skills: string[];
 }
 
@@ -38,14 +38,9 @@ export interface Work {
   badges?: string[];
 }
 
-interface Certificate {
+export interface Certificate {
   name: string;
   date: string;
-}
-
-export interface Certification {
-  company: string;
-  certificates: Certificate[];
 }
 
 export const PERSONAL_DATA: PersonalInformation = {
@@ -95,7 +90,7 @@ export const PERSONAL_DATA: PersonalInformation = {
         'Developed secure, performant and documented APIs utilising GraphQL, REST and OpenAPI standards.',
         'Optimised fullstack applications for responsiveness, initial load, caching and cost.',
         'Implemented infrastructure as code utilising AWS CDK, SAM and CloudFormation.',
-        'Securely managed access and third party system integrations using OIDC, OAuth and RBAC.',
+        'Securely managed access and system integrations using OIDC, OAuth and RBAC.',
       ],
       badges: [],
     },
@@ -134,17 +129,12 @@ export const PERSONAL_DATA: PersonalInformation = {
   ],
   certifications: [
     {
-      company: 'Amazon Web Services (AWS)',
-      certificates: [
-        {
-          name: 'AWS Certified Solutions Architect – Associate',
-          date: 'Jun 2024',
-        },
-        {
-          name: 'AWS Certified Cloud Practitioner',
-          date: 'Apr 2023',
-        },
-      ],
+      name: 'AWS Certified Solutions Architect – Associate',
+      date: 'Jun 2024',
+    },
+    {
+      name: 'AWS Certified Cloud Practitioner',
+      date: 'Apr 2023',
     },
   ],
   skills: [

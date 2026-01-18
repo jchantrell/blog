@@ -8,11 +8,11 @@ const { skills } = PERSONAL_DATA;
 <section class="flex min-h-0 flex-col gap-y-1">
   <h2 class="text-xl font-bold" id="skills-section">Skills</h2>
   <ul class="flex list-none flex-wrap gap-1 p-0 leading-0 print:hidden" aria-label="List of skills">
-    {skills.map((skill, idx) => (
+    {skills.map((skill) => (
         <li>
             <Badge variant="secondary">{skill}</Badge>
         </li>
         ))}
   </ul>
-  <span class="text-xs font-mono text-wrap hidden leading-[1.1]  print:inline-block">{skills.join(" • ")}</span>
+  <span class="text-xs font-mono text-wrap hidden leading-[12px] print:inline-block">{skills.join(" • ")}</span>
 </section>

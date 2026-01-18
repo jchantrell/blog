@@ -1,6 +1,6 @@
 ---
 const { project } = Astro.props;
-const { data, slug, render } = project;
+const { data, render } = project;
 const { name, link, tags } = data;
 const { Content } = await render();
 ---
@@ -10,7 +10,7 @@ const { Content } = await render();
     <div class="flex flex-wrap items-center mb-1">
       <a href={link} target="_blank" class="font-normal text-xl underline mr-2 mb-1"> {name} </a>
       <div class="flex flex-wrap gap-1">
-        {tags.split(",").map(tag=><div class="text-xs text-white rounded-md px-1 py-0.5 bg-[color:var(--primary-color)]">{tag}</div>)}
+        {tags.split(",").map((tag: string)=><div class="text-xs text-white rounded-md px-1 py-0.5 bg-[color:var(--primary-color)]">{tag}</div>)}
       </div>
     </div>
     <Content />
