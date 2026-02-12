@@ -8,7 +8,7 @@ import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
 
 export default defineConfig({
-  site: 'https://jchantrell.dev',
+  site: 'https://jchantrell.com',
   integrations: [mdx(), solidJs()],
   prefetch: true,
 

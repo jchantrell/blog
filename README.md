@@ -1,4 +1,4 @@
-# jchantrell.dev
+# jchantrell.com
 
 This is a personal website that's built with [Astro](https://astro.build/).
 

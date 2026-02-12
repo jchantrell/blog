@@ -51,9 +51,9 @@ export const PERSONAL_DATA: PersonalInformation = {
   about: 'Creatively-driven software engineer with a strong background in systems, infrastructure and integration.',
   summary:
     'A big picture thinker that approaches problem solving with a systems mindset, drawing on deep technical experience, domain understanding and a genuine care for the people co-creating and using my solutions. I have experience across engineering, consulting and support roles and bring an empathetic customer-first approach to everything I do.',
-  personalWebsiteUrl: 'https://jchantrell.dev',
+  personalWebsiteUrl: 'https://jchantrell.com',
   contact: {
-    email: 'me@jchantrell.dev',
+    email: 'work@jchantrell.com',
     tel: '+61452575451',
     social: [
       { name: 'GitHub', url: 'https://github.com/jchantrell' },
