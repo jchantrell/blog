@@ -1,7 +1,7 @@
 ---
 import PrintInstructions from './PrintInstruction.astro';
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/+$/, '');
 const isResume = currentPath === '/resume';
 ---
 
