@@ -191,6 +191,7 @@ export const PERSONAL_DATA: PersonalInformation = {
     'OIDC',
     'RBAC',
     'AWS Powertools',
+    'Monorepos',
     'NestJS',
     'Apollo',
     'React',
